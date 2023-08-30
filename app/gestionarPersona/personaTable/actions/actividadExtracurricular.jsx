@@ -187,7 +187,7 @@ const ActividadExtracurricular = ({ props }) => {
               <Col>
                 {arrayActividades.toReversed().map((elemento, index) => {
                   return (
-                    <div key={index}>
+                    <div className={style.actividad_container} key={index}>
                       <h5 id={style.bold}>
                         Actividad {elemento.nombre_actividad}
                       </h5>
@@ -254,7 +254,6 @@ const ActividadExtracurricular = ({ props }) => {
                           Eliminar actividad
                         </button>
                       </div>
-                      <hr />
                     </div>
                   );
                 })}

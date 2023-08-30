@@ -190,7 +190,7 @@ const CargarTurno = ({ props }) => {
               <Col>
                 {arrayTurnos.toReversed().map((elemento, index) => {
                   return (
-                    <div key={index}>
+                    <div className={style.turno_container} key={index}>
                       <h5 id={style.bold}>
                         {elemento.tipo_turno} {elemento.dia_turno}
                       </h5>
@@ -232,7 +232,6 @@ const CargarTurno = ({ props }) => {
                           Eliminar turno
                         </button>
                       </div>
-                      <hr />
                     </div>
                   );
                 })}

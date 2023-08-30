@@ -190,6 +190,7 @@ const Discapacidad = ({ persona, getLoadData }) => {
                 <option value="">---</option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
+                <option value="En trámite">En trámite</option>
               </select>
             </Col>
             <Col>
@@ -204,6 +205,7 @@ const Discapacidad = ({ persona, getLoadData }) => {
                 <option value="">---</option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
+                <option value="En trámite">En trámite</option>
               </select>
             </Col>
             <Col></Col>

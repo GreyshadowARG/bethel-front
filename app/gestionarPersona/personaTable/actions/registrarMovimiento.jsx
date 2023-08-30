@@ -226,7 +226,7 @@ const RegistrarMovimiento = ({ props }) => {
               <Col>
                 {arrayMovimientos.toReversed().map((elemento, index) => {
                   return (
-                    <div key={index}>
+                    <div className={style.movimiento_container} key={index}>
                       <h5 id={style.bold}>Registro {elemento.fecha_egreso}</h5>
                       <table className={style.table}>
                         <tbody>
@@ -311,7 +311,6 @@ const RegistrarMovimiento = ({ props }) => {
                           Eliminar movimiento
                         </button>
                       </div>
-                      <hr />
                     </div>
                   );
                 })}

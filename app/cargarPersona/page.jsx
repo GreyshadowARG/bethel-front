@@ -133,8 +133,8 @@ export default function CargarPersonas() {
     setNumeroAfiliado("");
     setCodigoAfiliado("");
     setFechaIngreso("");
-    setDocumentacionIngreso("")
-    setOtraDocumentacionIngreso("")
+    setDocumentacionIngreso("");
+    setOtraDocumentacionIngreso("");
     setAreaPideIngreso("");
     setAreaPideIngresoDetalles("");
     setCondicionSenaf("");
@@ -143,9 +143,9 @@ export default function CargarPersonas() {
     setOtraAreaIngreso("");
     setConcurreInstitucionEducativa("");
     setModalidad("");
-    setMaestraIntegradora("")
-    setNombreMaestraIntegradora("")
-    setTelMaestraIntegradora("")
+    setMaestraIntegradora("");
+    setNombreMaestraIntegradora("");
+    setTelMaestraIntegradora("");
     setNivelEscolar("");
     setNivelEducativo("");
     setUltimoNivelEducativo("");
@@ -166,8 +166,8 @@ export default function CargarPersonas() {
     setHorarioAtencionAcomTer("");
     setTratamientoRecibe("Ninguno");
     setOtroTratamientoRecibe("");
-    setFechaInicio("")
-    setFechaFinalizacion("")
+    setFechaInicio("");
+    setFechaFinalizacion("");
     setNombreProfesional("");
     setDiaTratamiento("");
     setHoraTratamiento("");
@@ -175,17 +175,18 @@ export default function CargarPersonas() {
     setTratamientoMedEspecial("");
     setNombrePadre("");
     setVivePadre("");
-    setDniPadre("")
+    setDniPadre("");
     setDomicilioPadre("");
     setTelPadre("");
     setNombreMadre("");
     setViveMadre("");
-    setDniMadre("")
+    setDniMadre("");
     setDomicilioMadre("");
     setTelMadre("");
     setNombreReferente("");
+    setDescripcionReferente("");
     setViveReferente("");
-    setDniReferente("")
+    setDniReferente("");
     setDomicilioReferente("");
     setTelReferente("");
     setSituacionFamiliar("");
@@ -196,6 +197,16 @@ export default function CargarPersonas() {
     setFrecuenciaVisita("");
     setProcesoRevinculacion("");
     setSuccess(false);
+  };
+
+  const handleFechaNacimiento = (e) => {
+    let fecha = new Date(e.target.value);
+    let month_diff = Date.now() - fecha.getTime();
+    let age_dt = new Date(month_diff);
+    let year = age_dt.getUTCFullYear();
+    let age = Math.abs(year - 1970);
+    console.log(age);
+    setFechaNacimiento();
   };
 
   const handleSubmit = async (e) => {
@@ -218,7 +229,10 @@ export default function CargarPersonas() {
           numero_afiliado: numeroAfiliado,
           codigo_afiliado: codigoAfiliado,
           fecha_ingreso: fechaIngreso,
-          documentacion_ingreso: documentacionIngreso == "Otro" ? otraDocumentacionIngreso : documentacionIngreso,
+          documentacion_ingreso:
+            documentacionIngreso == "Otro"
+              ? otraDocumentacionIngreso
+              : documentacionIngreso,
           area_pide_ingreso:
             areaPideIngreso == "Otro" ? otraAreaIngreso : areaPideIngreso,
           detalle_area:
@@ -400,7 +414,7 @@ export default function CargarPersonas() {
                   />
                 </Col>
                 <Col>
-                  <label>Talle(altura):</label>
+                  <label>Talle(altura en cm):</label>
                   <br />
                   <input
                     type="text"
@@ -419,7 +433,15 @@ export default function CargarPersonas() {
                   <input
                     type="date"
                     value={fechaNacimiento}
-                    onChange={(e) => setFechaNacimiento(e.target.value)}
+                    onChange={(e) => {
+                      let fecha = new Date(e.target.value);
+                      let month_diff = Date.now() - fecha.getTime();
+                      let age_dt = new Date(month_diff);
+                      let year = age_dt.getUTCFullYear();
+                      let age = Math.abs(year - 1970);
+                      setEdad(age)
+                      setFechaNacimiento(e.target.value);
+                    }}
                   />
                 </Col>
                 <Col>
@@ -569,22 +591,24 @@ export default function CargarPersonas() {
                     <option value="DNI">DNI</option>
                     <option value="Informe médico">Informe médico</option>
                     <option value="Carnet vacunación">Carnet vacunación</option>
-                    <option value="Partida nacimiento">Partida nacimiento</option>
+                    <option value="Partida nacimiento">
+                      Partida nacimiento
+                    </option>
                     <option value="Otros">Otros</option>
                   </select>
                   {documentacionIngreso == "Otros" && (
                     <>
-                    <br />
-                          <input
-                            type="text"
-                            value={otraDocumentacionIngreso}
-                            onChange={(e) =>
-                              setOtraDocumentacionIngreso(e.target.value)
-                            }
-                          />
+                      <br />
+                      <input
+                        type="text"
+                        value={otraDocumentacionIngreso}
+                        onChange={(e) =>
+                          setOtraDocumentacionIngreso(e.target.value)
+                        }
+                      />
                     </>
                   )}
-                </Col> 
+                </Col>
                 <Col>
                   <label>Area que pide el ingreso:</label>
                   <br />
@@ -1207,6 +1231,7 @@ export default function CargarPersonas() {
                       <option value="Psicológico">Psicológico</option>
                       <option value="Psiquiatría">Psiquiatría</option>
                       <option value="Psicomotricidad">Psicomotricidad</option>
+                      <option value="Fisioterapia">Fisioterapia</option>
                       <option value="Fonoaudiología">Fonoaudiología</option>
                       <option value="Kinesiología">Kinesiología</option>
                       <option value="Otro">Otro</option>
@@ -1220,7 +1245,7 @@ export default function CargarPersonas() {
                         type="text"
                         value={otroTratamientoRecibe}
                         onChange={(e) => {
-                          setOtroTratamientoRecibe(e);
+                          setOtroTratamientoRecibe(e.target.value);
                         }}
                       />
                     </Col>
@@ -1228,7 +1253,7 @@ export default function CargarPersonas() {
                 </Row>
                 {tratamientoRecibe !== "Ninguno" && (
                   <>
-                  <br />
+                    <br />
                     <br />
                     <br />
                     <Row>
@@ -1356,7 +1381,7 @@ export default function CargarPersonas() {
               </Row>
               <br />
               <Row>
-              <Col>
+                <Col>
                   <label>DNI:</label>
                   <br />
                   <input
@@ -1421,7 +1446,7 @@ export default function CargarPersonas() {
               </Row>
               <br />
               <Row>
-              <Col>
+                <Col>
                   <label>DNI:</label>
                   <br />
                   <input
@@ -1493,11 +1518,11 @@ export default function CargarPersonas() {
                     <option value="Si">Si</option>
                     <option value="No">No</option>
                   </select>
-                </Col>                
+                </Col>
               </Row>
               <br />
               <Row>
-              <Col>
+                <Col>
                   <label>DNI:</label>
                   <br />
                   <input

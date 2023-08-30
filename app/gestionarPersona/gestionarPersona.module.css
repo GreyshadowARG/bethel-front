@@ -67,3 +67,43 @@
 .inputDescription{
   width: 800px;
 }
+.movimiento_container{
+  background-color: rgb(195, 234, 223);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.turno_container{
+  background-color: rgb(213, 233, 242);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.actividad_container{
+  background-color: rgb(255, 249, 182);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.tratamientos_container{
+  background-color: rgb(223, 234, 206);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.tratamientos_container h5,
+.actividad_container h5,
+.turno_container h5,
+.movimiento_container h5
+{
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  padding: 7px;
+}
+.row_buscador{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+}

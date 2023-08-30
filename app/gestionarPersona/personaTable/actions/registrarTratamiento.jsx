@@ -259,8 +259,8 @@ const RegistrarTratamiento = ({ props }) => {
               <Col>
                 {arrayTratamientos.toReversed().map((elemento, index) => {
                   return (
-                    <div key={index}>
-                      <h5 id={style.bold}>Registro {elemento.fecha_egreso}</h5>
+                    <div className={style.tratamientos_container} key={index}>
+                      <h5 id={style.bold}>Registro {index+1}</h5>
                       <table className={style.table}>
                         <tbody>
                           <tr>
@@ -336,7 +336,6 @@ const RegistrarTratamiento = ({ props }) => {
                           Eliminar tratamimento
                         </button>
                       </div>
-                      <hr />
                     </div>
                   );
                 })}

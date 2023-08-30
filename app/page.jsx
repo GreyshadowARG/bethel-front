@@ -68,7 +68,6 @@ export default function HomePage() {
                       <Row>
                         <Col id={style.bold}>{element.nombre}</Col>
                         <Col>{element.casa}</Col>
-                        <Col></Col>
                         <Col>{element.fecha_nacimiento}</Col>
                       </Row>
                     </div>
@@ -88,7 +87,6 @@ export default function HomePage() {
                       <Row>
                         <Col id={style.bold}>{element.nombre}</Col>
                         <Col>{element.casa}</Col>
-                        <Col></Col>
                         <Col>{element.fecha_nacimiento}</Col>
                       </Row>
                     </div>
@@ -107,7 +105,6 @@ export default function HomePage() {
                       <Row>
                         <Col id={style.bold}>{element.nombre}</Col>
                         <Col>{element.casa}</Col>
-                        <Col></Col>
                         <Col>{element.fecha_nacimiento}</Col>
                       </Row>
                     </div>

@@ -69,7 +69,7 @@ const DatosPersonales = ({ persona, getLoadData }) => {
     setTalle(persona.talle);
     setEdad(persona.edad);
     setFechaNacimiento(persona.fecha_nacimiento);
-  }
+  };
 
   return (
     <>
@@ -156,6 +156,8 @@ const DatosPersonales = ({ persona, getLoadData }) => {
                 </select>
               </Col>
             </Row>
+            <br />
+            <br />
             <Row>
               <Col>
                 <label id={style.bold}>Peso</label>
@@ -182,7 +184,15 @@ const DatosPersonales = ({ persona, getLoadData }) => {
                 <input
                   type="date"
                   defaultValue={changeFormatDate(fechaNacimiento)}
-                  onChange={(e) => setFechaNacimiento(e.target.value)}
+                  onChange={(e) => {
+                    let fecha = new Date(e.target.value);
+                    let month_diff = Date.now() - fecha.getTime();
+                    let age_dt = new Date(month_diff);
+                    let year = age_dt.getUTCFullYear();
+                    let age = Math.abs(year - 1970);
+                    setEdad(age);
+                    setFechaNacimiento(e.target.value);
+                  }}
                 />
               </Col>
               <Col></Col>

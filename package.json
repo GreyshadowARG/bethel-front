@@ -2,6 +2,8 @@
   "name": "cliente-bethel",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://backend-api:8080",
+
   "scripts": {
     "dev": "next dev",
     "build": "next build",

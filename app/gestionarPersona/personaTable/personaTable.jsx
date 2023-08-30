@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "../../../config/axios";
 
 // actions
+import PasarPasiva from "./actions/pasarPasiva";
 import RegistrarMovimiento from "./actions/registrarMovimiento";
 import RegistrarTratamiento from "./actions/registrarTratamiento";
 import CargarDocumentacion from "./actions/cargarDocumentacion";
@@ -91,7 +92,7 @@ const GestionPersona = ({ props }) => {
           <RegistrarTratamiento props={persona._id} />
         )}
         {accion === "CargarTurno" && <CargarTurno props={persona} />}
-
+        {accion === "PasarPasiva" && <PasarPasiva props={persona} />}
         {accion === "" && (
           <>
             <div className={style.menu_gestion}>
@@ -100,6 +101,12 @@ const GestionPersona = ({ props }) => {
                 onClick={() => setAccion("CargarDocumentacion")}
               >
                 Cargar Documentación
+              </button>
+              <button
+                className="btn btn-warning"
+                onClick={() => setAccion("PasarPasiva")}
+              >
+                Pasar a población pasiva
               </button>
             </div>
             <br />
