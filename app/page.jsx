@@ -200,7 +200,7 @@ export default function HomePage() {
                           <Col id={style.bold}>{element.nombre}</Col>
                           <Col>{element.tipo_turno}</Col>
                           <Col>{element.lugar_turno}</Col>
-                          <Col>{element.hora_turno}</Col>
+                          <Col>{element.hora_turno} hs</Col>
                           <Col>{element.dia_turno}</Col>
                         </Row>
                       </div>
@@ -220,7 +220,7 @@ export default function HomePage() {
                           <Col id={style.bold}>{element.nombre}</Col>
                           <Col>{element.tipo_turno}</Col>
                           <Col>{element.lugar_turno}</Col>
-                          <Col>{element.hora_turno}</Col>
+                          <Col>{element.hora_turno} hs</Col>
                           <Col>{element.dia_turno}</Col>
                         </Row>
                       </div>
@@ -240,7 +240,7 @@ export default function HomePage() {
                           <Col id={style.bold}>{element.nombre}</Col>
                           <Col>{element.tipo_turno}</Col>
                           <Col>{element.lugar_turno}</Col>
-                          <Col>{element.hora_turno}</Col>
+                          <Col>{element.hora_turno} hs</Col>
                           <Col>{element.dia_turno}</Col>
                         </Row>
                       </div>
