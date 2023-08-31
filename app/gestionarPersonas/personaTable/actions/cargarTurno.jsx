@@ -194,34 +194,40 @@ const CargarTurno = ({ props }) => {
                       <h5 id={style.bold}>
                         {elemento.tipo_turno} {elemento.dia_turno}
                       </h5>
-                      <table className={style.table}>
-                        <tbody>
-                          <tr>
-                            <th>Descripción</th>
-                            <th>Lugar</th>
-                          </tr>
-                          <tr className={style.tr}>
-                            <td className={style.td}>{elemento.detalles}</td>
-                            <td className={style.td}>{elemento.lugar_turno}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <br />
-                      <table className={style.table}>
-                        <tbody>
-                          <tr>
-                            <th>Día</th>
-                            <th>Horario</th>
-                          </tr>
-                          <tr className={style.tr}>
-                            <td className={style.td}>{elemento.dia_turno}</td>
-                            <td className={style.td}>
+                      <div>
+                        <div className={style.actionsRow}>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Descripción</span>
+                              <br />
+                              {elemento.detalles}
+                            </p>
+                          </div>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Lugar</span>
+                              <br />
+                              {elemento.lugar_turno}
+                            </p>
+                          </div>
+                        </div>
+                        <div className={style.actionsRow}>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Fecha</span>
+                              <br />
+                              {elemento.dia_turno}
+                            </p>
+                          </div>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Horario</span>
+                              <br />
                               {elemento.hora_turno} hs
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <br />
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                       <div>
                         <button
                           className="btn btn-danger"

@@ -260,72 +260,70 @@ const RegistrarTratamiento = ({ props }) => {
                 {arrayTratamientos.toReversed().map((elemento, index) => {
                   return (
                     <div className={style.tratamientos_container} key={index}>
-                      <h5 id={style.bold}>Registro {index+1}</h5>
-                      <table className={style.table}>
-                        <tbody>
-                          <tr>
-                            <th>Recibe tratamiento</th>
-                            <th>Fecha de inicio</th>
-                            {elemento.fecha_finalizacion != "" && (
-                              <th>Fecha de finalizacion</th>
-                            )}
-                          </tr>
-                          <tr className={style.tr}>
-                            <td className={style.td}>
+                      <h5 id={style.bold}>Registro {index + 1}</h5>
+                      <div>
+                        <div className={style.actionsRow}>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Recibe tratamiento</span>
+                              <br />
                               {elemento.recibe_tratamiento}
-                            </td>
-                            <td className={style.td}>
+                            </p>
+                          </div>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Fecha de inicio</span>
+                              <br />
                               {elemento.fecha_inicio}
-                            </td>
-                            {elemento.fecha_finalizacion != "" && (
-                              <tr className={style.td}>
-                                <td>
-                                  {elemento.fecha_finalizacion}
-                                </td>
-                              </tr>
-                            )}
-                          </tr>
-                        </tbody>
-                      </table>
-                      <br/>
-                      <table>
-                        <tbody>
-                          <tr>
-                            <th>Profesional</th>
-                            <th>Día de tratamiento</th>
-                            <th>Hora</th>
-                          </tr>
-                          <tr>
-                            <td className={style.td}>
+                            </p>
+                          </div>
+                          {elemento.fecha_finalizacion != "" && (
+                            <div className={style.actionsCol}>
+                              <p>
+                                <span id={style.bold}>
+                                  Fecha de finalización
+                                </span>
+                                <br />
+                                {elemento.fecha_finalizacion}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                        <div className={style.actionsRow}>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Profesional</span>
+                              <br />
                               {elemento.profesional_tratamiento}
-                            </td>
-                            <td className={style.td}>
+                            </p>
+                          </div>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Día</span>
+                              <br />
                               {elemento.dia_tratamiento}
-                            </td>
-                            <td className={style.td}>
+                            </p>
+                          </div>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Horario</span>
+                              <br />
                               {elemento.hora_tratamiento}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      {tratMedEsp != "No" && (
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      {elemento.tratamiento_especial != "No" && (
                         <>
-                          <br />
-                          <table>
-                            <tbody>
-                              <tr>
-                                <th>Tratamiento especial</th>
-                              </tr>
-                              <tr className={style.tr}>
-                                <td id={style.td_long}>
-                                  {elemento.tratamiento_especial}
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                          <div className={style.actionsRow}>
+                            <p id={style.paddingLeft}>
+                              <span id={style.bold}>Tratamiento especial</span>
+                              <br />
+                              {elemento.tratamiento_especial}
+                            </p>
+                          </div>
                         </>
                       )}
-                      <br />
                       <div className={style.cardButtons}>
                         <button
                           className="btn btn-danger"

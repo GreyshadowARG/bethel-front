@@ -66,6 +66,9 @@
 #bold {
   font-weight: bold;
 }
+#paddingLeft {
+  padding-left: 6px;
+}
 .buttonGestionar {
   background-color: rgb(26, 120, 73);
   color: white;
@@ -164,4 +167,18 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: 20px;
+}
+.actionsCol {
+  font-size: 18px;
+  width: 250px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.actionsRow{
+  font-size: 18px;
+  gap: 100px;
+  display: flex;
+  flex-direction: row;
 }

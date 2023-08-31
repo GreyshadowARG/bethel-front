@@ -60,7 +60,7 @@ export default function HomePage() {
             {hoyBirthArray.length == 0 &&
               proxSemBirthArray.length == 0 &&
               proxMesBirthArray.length == 0 && (
-                <div className={style.alertsRowCertif}>
+                <div className={style.alertsRow}>
                   <p>
                     No hay fechas de cumpleaños cercanos a la
                     fecha actual.
@@ -225,7 +225,7 @@ export default function HomePage() {
               {hoyTurnosArray.length == 0 &&
               proxSemTurnosArray.length == 0 &&
               proxMesTurnosArray.length == 0 && (
-                <div className={style.alertsRowCertif}>
+                <div className={style.alertsRowTurnos}>
                   <p>
                     No hay fechas de turnos cercanos a la
                     fecha actual.

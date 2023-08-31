@@ -7,8 +7,8 @@ const links = [
     route: "/cargarPersona",
   },
   {
-    label: "GESTIONAR PERSONA",
-    route: "/gestionarPersona",
+    label: "GESTIONAR PERSONAS",
+    route: "/gestionarPersonas",
   },
 ];
 

@@ -191,59 +191,42 @@ const ActividadExtracurricular = ({ props }) => {
                       <h5 id={style.bold}>
                         Actividad {elemento.nombre_actividad}
                       </h5>
-                      <table className={style.table}>
-                        <tbody>
-                          <tr>
-                            <th>Tipo de actividad</th>
-                            {elemento.lugar_actividad != "" && <th>Lugar</th>}
-                          </tr>
-                          <tr className={style.tr}>
-                            <td className={style.td}>
+                      <div>
+                        <div className={style.actionsRow}>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Tipo de actividad</span>
+                              <br />
                               {elemento.nombre_actividad}
-                            </td>
-                            <td className={style.td}>
+                            </p>
+                          </div>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Lugar</span>
+                              <br />
                               {elemento.lugar_actividad}
-                            </td>
-                          </tr>
-                        </tbody>
-                        <br />
-                        <tbody>
-                          <tr>
-                            {elemento.dia_actividad != "" && <th>Día</th>}
-                            {elemento.horario_actividad != "" && (
-                              <th>Horario</th>
-                            )}
-                          </tr>
-                          <tr className={style.tr}>
-                            {elemento.dia_actividad != "" && (
-                              <td className={style.td}>
+                            </p>
+                          </div>
+                        </div>
+                        <div>
+                          <div className={style.actionsRow}>
+                            <div className={style.actionsCol}>
+                              <p>
+                                <span id={style.bold}>Fecha</span>
+                                <br />
                                 {elemento.dia_actividad}
-                              </td>
-                            )}
-                            {elemento.horario_actividad != "" && (
-                              <td className={style.td}>
-                                {elemento.horario_actividad}
-                              </td>
-                            )}
-                          </tr>
-                        </tbody>
-                        {elemento.detalles_actividad != "" && (
-                          <>
-                            <br />
-                            <tbody>
-                              <tr>
-                                <th>Descripción</th>
-                              </tr>
-                              <tr>
-                                <td className={style.td}>
-                                  {elemento.detalles_actividad}
-                                </td>
-                              </tr>
-                            </tbody>
-                          </>
-                        )}
-                      </table>
-                      <br />
+                              </p>
+                            </div>
+                            <div className={style.actionsCol}>
+                              <p>
+                                <span id={style.bold}>Horario</span>
+                                <br />
+                                {elemento.horario_actividad} hs
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       <div>
                         <button
                           className="btn btn-danger"

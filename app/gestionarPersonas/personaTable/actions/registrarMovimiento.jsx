@@ -228,79 +228,63 @@ const RegistrarMovimiento = ({ props }) => {
                   return (
                     <div className={style.movimiento_container} key={index}>
                       <h5 id={style.bold}>Registro {elemento.fecha_egreso}</h5>
-                      <table className={style.table}>
-                        <tbody>
-                          <tr>
-                            <th>Tipo de egreso</th>
-                            <th>Fecha Egreso</th>
-                            {elemento.fecha_regreso != "" && (
-                              <th>Fecha Regreso</th>
-                            )}
-                          </tr>
-                          <tr className={style.tr}>
-                            <td className={style.td}>{elemento.tipo_egreso}</td>
-                            <td className={style.td}>
+                      <div>
+                        <div className={style.actionsRow}>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Tipo de egreso</span>
+                              <br />
+                              {elemento.tipo_egreso}
+                            </p>
+                          </div>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Fecha de egreso</span>
+                              <br />
                               {elemento.fecha_egreso}
-                            </td>
-                            {elemento.fecha_regreso != "" && (
-                              <td className={style.td}>
-                                {elemento.fecha_regreso}
-                              </td>
-                            )}
-                          </tr>
-                        </tbody>
-                        {(elemento.nombre_persona_a_cargo != "" ||
-                          elemento.vinculo != "" ||
-                          elemento.datos_contacto != "") && (
-                          <>
-                            <br />
-                            <tbody>
-                              <tr>
-                                {elemento.nombre_persona_a_cargo != "" && (
-                                  <th>Persona a cargo</th>
-                                )}
-                                {elemento.vinculo != "" && <th>Vínculo</th>}
-                                {elemento.datos_contacto != "" && (
-                                  <th>Datos contacto</th>
-                                )}
-                              </tr>
-                              <tr className={style.tr}>
-                                {elemento.nombre_persona_a_cargo != "" && (
-                                  <td className={style.td}>
-                                    {elemento.nombre_persona_a_cargo}
-                                  </td>
-                                )}
-                                {elemento.vinculo != "" && (
-                                  <td className={style.td}>
-                                    {elemento.vinculo}
-                                  </td>
-                                )}
-                                {elemento.datos_contacto != "" && (
-                                  <td className={style.td}>
-                                    {elemento.datos_contacto}
-                                  </td>
-                                )}
-                              </tr>
-                            </tbody>
-                            {elemento.descripcion_visita != "" && (
-                              <>
+                            </p>
+                          </div>
+                          {elemento.fecha_regreso != "" && (
+                            <div className={style.actionsCol}>
+                              <p>
+                                <span id={style.bold}>Fecha de regreso</span>
                                 <br />
-                                <tbody>
-                                  <tr>
-                                    <th>Descripción</th>
-                                  </tr>
-                                  <tr className={style.tr}>
-                                    <td id={style.td_long}>
-                                      {elemento.descripcion_visita}
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </>
-                            )}
-                          </>
-                        )}
-                      </table>
-                      <br />
+                                {elemento.fecha_regreso}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                        <div className={style.actionsRow}>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Persona a cargo</span>
+                              <br />
+                              {elemento.nombre_persona_a_cargo}
+                            </p>
+                          </div>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Vínculo</span>
+                              <br />
+                              {elemento.vinculo}
+                            </p>
+                          </div>
+                          <div className={style.actionsCol}>
+                            <p>
+                              <span id={style.bold}>Datos contato</span>
+                              <br />
+                              {elemento.datos_contacto}
+                            </p>
+                          </div>
+                        </div>
+                        <div className={style.actionsRow}>
+                          <p id={style.paddingLeft}>
+                            <span id={style.bold}>Descripción</span>
+                            <br />
+                            {elemento.descripcion_visita}
+                          </p>
+                        </div>
+                      </div>
                       <div>
                         <button
                           className="btn btn-danger"

@@ -2,7 +2,7 @@
   "name": "cliente-bethel",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bethel-back-f07a-dev.fl0.io/",
+  "proxy": "http://localhost:8080/",
 
   "scripts": {
     "dev": "next dev",
