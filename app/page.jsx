@@ -57,6 +57,16 @@ export default function HomePage() {
             <h3 id={style.bold} className={style.categoryTitleBirth}>
               CUMPLEAÑOS
             </h3>
+            {hoyBirthArray.length == 0 &&
+              proxSemBirthArray.length == 0 &&
+              proxMesBirthArray.length == 0 && (
+                <div className={style.alertsRowCertif}>
+                  <p>
+                    No hay fechas de cumpleaños cercanos a la
+                    fecha actual.
+                  </p>
+                </div>
+              )}
             {hoyBirthArray.length > 0 && (
               <>
                 <h5 className={style.categoryTitleBirth} id={style.bold}>
@@ -64,16 +74,17 @@ export default function HomePage() {
                 </h5>
                 {hoyBirthArray.map((element, index) => {
                   return (
-                    <div className={style.categoryBodyBirth} key={index}>
-                      <Row>
-                        <Col id={style.bold}>{element.nombre}</Col>
-                        <Col>{element.casa}</Col>
-                        <Col>{element.fecha_nacimiento}</Col>
-                      </Row>
+                    <div className={style.alertsRow} key={index}>
+                      <p className={style.alertsColStart} id={style.bold}>
+                        {element.nombre}
+                      </p>
+                      <p className={style.alertsCol}>{element.casa}</p>
+                      <p className={style.alertsColEnd} id={style.bold}>
+                        {element.fecha_nacimiento}
+                      </p>
                     </div>
                   );
                 })}
-                <br />
               </>
             )}
             {proxSemBirthArray.length > 0 && (
@@ -83,12 +94,14 @@ export default function HomePage() {
                 </h5>
                 {proxSemBirthArray.map((element, index) => {
                   return (
-                    <div className={style.categoryBodyBirth} key={index}>
-                      <Row>
-                        <Col id={style.bold}>{element.nombre}</Col>
-                        <Col>{element.casa}</Col>
-                        <Col>{element.fecha_nacimiento}</Col>
-                      </Row>
+                    <div className={style.alertsRow} key={index}>
+                      <p className={style.alertsColStart} id={style.bold}>
+                        {element.nombre}
+                      </p>
+                      <p className={style.alertsCol}>{element.casa}</p>
+                      <p className={style.alertsColEnd} id={style.bold}>
+                        {element.fecha_nacimiento}
+                      </p>
                     </div>
                   );
                 })}
@@ -101,12 +114,14 @@ export default function HomePage() {
                 </h5>
                 {proxMesBirthArray.map((element, index) => {
                   return (
-                    <div className={style.categoryBodyBirth} key={index}>
-                      <Row>
-                        <Col id={style.bold}>{element.nombre}</Col>
-                        <Col>{element.casa}</Col>
-                        <Col>{element.fecha_nacimiento}</Col>
-                      </Row>
+                    <div className={style.alertsRow} key={index}>
+                      <p className={style.alertsColStart} id={style.bold}>
+                        {element.nombre}
+                      </p>
+                      <p className={style.alertsCol}>{element.casa}</p>
+                      <p className={style.alertsColEnd} id={style.bold}>
+                        {element.fecha_nacimiento}
+                      </p>
                     </div>
                   );
                 })}
@@ -121,6 +136,16 @@ export default function HomePage() {
               <h3 className={style.categoryTitleCertif} id={style.bold}>
                 VENCIMIENTO DE CERTIFICADOS
               </h3>
+              {hoyCertArray.length == 0 &&
+                proxSemCertArray.length == 0 &&
+                proxMesCertArray.length == 0 && (
+                  <div className={style.alertsRowCertif}>
+                    <p>
+                      No hay fechas de vencimientos de certificados cercanos a
+                      la fecha actual.
+                    </p>
+                  </div>
+                )}
               {hoyCertArray.length > 0 && (
                 <>
                   <h5 className={style.categoryTitleCertif} id={style.bold}>
@@ -128,13 +153,16 @@ export default function HomePage() {
                   </h5>
                   {hoyCertArray.map((element, index) => {
                     return (
-                      <div className={style.categoryBodyCertif} key={index}>
-                        <Row>
-                          <Col id={style.bold}>{element.nombre}</Col>
-                          <Col>{element.prestaciones_certificado}</Col>
-                          <Col></Col>
-                          <Col>{element.fecha_vencimiento_certificado}</Col>
-                        </Row>
+                      <div className={style.alertsRowCertif} key={index}>
+                        <p className={style.alertsColStart} id={style.bold}>
+                          {element.nombre}
+                        </p>
+                        <p className={style.alertsCol}>
+                          {element.prestaciones_certificado}
+                        </p>
+                        <p className={style.alertsColEnd} id={style.bold}>
+                          {element.fecha_vencimiento_certificado}
+                        </p>
                       </div>
                     );
                   })}
@@ -147,13 +175,16 @@ export default function HomePage() {
                   </h5>
                   {proxSemCertArray.map((element, index) => {
                     return (
-                      <div className={style.categoryBodyCertif} key={index}>
-                        <Row>
-                          <Col id={style.bold}>{element.nombre}</Col>
-                          <Col>{element.prestaciones_certificado}</Col>
-                          <Col></Col>
-                          <Col>{element.fecha_vencimiento_certificado}</Col>
-                        </Row>
+                      <div className={style.alertsRowCertif} key={index}>
+                        <p className={style.alertsColStart} id={style.bold}>
+                          {element.nombre}
+                        </p>
+                        <p className={style.alertsCol}>
+                          {element.prestaciones_certificado}
+                        </p>
+                        <p className={style.alertsColEnd} id={style.bold}>
+                          {element.fecha_vencimiento_certificado}
+                        </p>
                       </div>
                     );
                   })}
@@ -166,13 +197,16 @@ export default function HomePage() {
                   </h5>
                   {proxMesCertArray.map((element, index) => {
                     return (
-                      <div className={style.categoryBodyCertif} key={index}>
-                        <Row>
-                          <Col id={style.bold}>{element.nombre}</Col>
-                          <Col>{element.prestaciones_certificado}</Col>
-                          <Col></Col>
-                          <Col>{element.fecha_vencimiento_certificado}</Col>
-                        </Row>
+                      <div className={style.alertsRowCertif} key={index}>
+                        <p className={style.alertsColStart} id={style.bold}>
+                          {element.nombre}
+                        </p>
+                        <p className={style.alertsCol}>
+                          {element.prestaciones_certificado}
+                        </p>
+                        <p className={style.alertsColEnd} id={style.bold}>
+                          {element.fecha_vencimiento_certificado}
+                        </p>
                       </div>
                     );
                   })}
@@ -188,6 +222,16 @@ export default function HomePage() {
               <h3 className={style.categoryTitleTurnos} id={style.bold}>
                 TURNOS MEDICOS Y JUDICIALES
               </h3>
+              {hoyTurnosArray.length == 0 &&
+              proxSemTurnosArray.length == 0 &&
+              proxMesTurnosArray.length == 0 && (
+                <div className={style.alertsRowCertif}>
+                  <p>
+                    No hay fechas de turnos cercanos a la
+                    fecha actual.
+                  </p>
+                </div>
+              )}
               {hoyTurnosArray.length > 0 && (
                 <>
                   <h5 className={style.categoryTitleTurnos} id={style.bold}>
@@ -195,14 +239,25 @@ export default function HomePage() {
                   </h5>
                   {hoyTurnosArray.map((element, index) => {
                     return (
-                      <div className={style.categoryBodyTurnos} key={index}>
-                        <Row>
-                          <Col id={style.bold}>{element.nombre}</Col>
-                          <Col>{element.tipo_turno}</Col>
-                          <Col>{element.lugar_turno}</Col>
-                          <Col>{element.hora_turno} hs</Col>
-                          <Col>{element.dia_turno}</Col>
-                        </Row>
+                      <div className={style.alertsRowTurnos} key={index}>
+                        <p
+                          className={style.alertsColTurnosStart}
+                          id={style.bold}
+                        >
+                          {element.nombre}
+                        </p>
+                        <p className={style.alertsColTurnos}>
+                          {element.tipo_turno}
+                        </p>
+                        <p className={style.alertsColTurnos}>
+                          {element.lugar_turno}
+                        </p>
+                        <p className={style.alertsColTurnos} id={style.bold}>
+                          {element.hora_turno} hs
+                        </p>
+                        <p className={style.alertsColEnd} id={style.bold}>
+                          {element.dia_turno}
+                        </p>
                       </div>
                     );
                   })}
@@ -215,14 +270,25 @@ export default function HomePage() {
                   </h5>
                   {proxSemTurnosArray.map((element, index) => {
                     return (
-                      <div className={style.categoryBodyTurnos} key={index}>
-                        <Row>
-                          <Col id={style.bold}>{element.nombre}</Col>
-                          <Col>{element.tipo_turno}</Col>
-                          <Col>{element.lugar_turno}</Col>
-                          <Col>{element.hora_turno} hs</Col>
-                          <Col>{element.dia_turno}</Col>
-                        </Row>
+                      <div className={style.alertsRowTurnos} key={index}>
+                        <p
+                          className={style.alertsColTurnosStart}
+                          id={style.bold}
+                        >
+                          {element.nombre}
+                        </p>
+                        <p className={style.alertsColTurnos}>
+                          {element.tipo_turno}
+                        </p>
+                        <p className={style.alertsColTurnos}>
+                          {element.lugar_turno}
+                        </p>
+                        <p className={style.alertsColTurnos} id={style.bold}>
+                          {element.hora_turno} hs
+                        </p>
+                        <p className={style.alertsColEnd} id={style.bold}>
+                          {element.dia_turno}
+                        </p>
                       </div>
                     );
                   })}
@@ -235,14 +301,25 @@ export default function HomePage() {
                   </h5>
                   {proxMesTurnosArray.map((element, index) => {
                     return (
-                      <div className={style.categoryBodyTurnos} key={index}>
-                        <Row>
-                          <Col id={style.bold}>{element.nombre}</Col>
-                          <Col>{element.tipo_turno}</Col>
-                          <Col>{element.lugar_turno}</Col>
-                          <Col>{element.hora_turno} hs</Col>
-                          <Col>{element.dia_turno}</Col>
-                        </Row>
+                      <div className={style.alertsRowTurnos} key={index}>
+                        <p
+                          className={style.alertsColTurnosStart}
+                          id={style.bold}
+                        >
+                          {element.nombre}
+                        </p>
+                        <p className={style.alertsColTurnos}>
+                          {element.tipo_turno}
+                        </p>
+                        <p className={style.alertsColTurnos}>
+                          {element.lugar_turno}
+                        </p>
+                        <p className={style.alertsColTurnos} id={style.bold}>
+                          {element.hora_turno} hs
+                        </p>
+                        <p className={style.alertsColEnd} id={style.bold}>
+                          {element.dia_turno}
+                        </p>
                       </div>
                     );
                   })}

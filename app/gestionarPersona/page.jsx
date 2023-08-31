@@ -167,358 +167,362 @@ export default function BuscarPersona() {
         </button>
       ) : (
         <>
-            <br/>
+          <br />
+          <div className={style.row_buscador}>
             <div className={style.row_buscador}>
-      
-      <div className={style.row_buscador}>
-        <p id={style.bold}>Buscar por apellido:</p>
-        <input
-          type="text"
-          placeholder="Escribir apellido"
-          onChange={(e) => {
-            setQuery(e.target.value);
-          }}
-        />
-      </div>
-      <div className={style.row_buscador}>
-        <p id={style.bold}>Filtrar por:</p>
-        <select
-          value={filterType}
-          onChange={(e) => {
-            setFilterType(e.target.value);
-          }}
-        >
-          <option value="---" defaultValue>
-            --- sin filtros
-          </option>
-          <option value="Casa">Casa</option>
-          <option value="Edad">Edad</option>
-          <option value="Discapacidad">¿Tiene discapacidad?</option>
-          <option value="Curatela">¿Tiene curatela?</option>
-          <option value="Pensión">¿Tiene pensión?</option>
-        </select>
-        {filterType == "Casa" && (
-          <select
-            value={casa}
-            onChange={(e) => {
-              setCasa(e.target.value);
-            }}
-          >
-            <option value="Casa 2" defaultValue>
-              Casa 2
-            </option>
-            <option value="Casa 5">Casa 5</option>
-            <option value="Casa 6">Casa 6</option>
-            <option value="Casa 8">Casa 8</option>
-            <option value="Casa 9">Casa 9 (Ascochinga)</option>
-            <option value="Casa 14">Casa 14</option>
-          </select>
-        )}
-        {filterType == "Edad" && (
-          <select
-            value={edad}
-            onChange={(e) => {
-              setEdad(e.target.value);
-            }}
-          >
-            <option value="Mayores de 18" defaultValue>
-              Mayores 18
-            </option>
-            <option value="Menores de 18">Menores 18</option>
-          </select>
-        )}
-        {filterType == "Discapacidad" && (
-          <select
-            value={discapacidad}
-            onChange={(e) => {
-              setDiscapacidad(e.target.value);
-            }}
-          >
-            <option value="No" defaultValue>
-              No
-            </option>
-            <option value="Si">Si</option>
-          </select>
-        )}
-        {filterType == "Curatela" && (
-          <select
-            value={curatela}
-            onChange={(e) => {
-              setCuratela(e.target.value);
-            }}
-          >
-            <option value="No" defaultValue>
-              No
-            </option>
-            <option value="Si">Si</option>
-            <option value="En trámite">En trámite</option>
-          </select>
-        )}
-        {filterType == "Pensión" && (
-          <select
-            value={pension}
-            onChange={(e) => {
-              setPension(e.target.value);
-            }}
-          >
-            <option value="No" defaultValue>
-              No
-            </option>
-            <option value="Si">Si</option>
-            <option value="En trámite">En trámite</option>
-          </select>
-        )}
-      </div>
-    </div>
-            </>
-        
+              <p id={style.bold}>Buscar por apellido:</p>
+              <input
+                type="text"
+                placeholder="Escribir apellido"
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                }}
+              />
+            </div>
+            <div className={style.row_buscador}>
+              <p id={style.bold}>Filtrar por:</p>
+              <select
+                value={filterType}
+                onChange={(e) => {
+                  setFilterType(e.target.value);
+                }}
+              >
+                <option value="---" defaultValue>
+                  --- sin filtros
+                </option>
+                <option value="Casa">Casa</option>
+                <option value="Edad">Edad</option>
+                <option value="Discapacidad">¿Tiene discapacidad?</option>
+                <option value="Curatela">¿Tiene curatela?</option>
+                <option value="Pensión">¿Tiene pensión?</option>
+              </select>
+              {filterType == "Casa" && (
+                <select
+                  value={casa}
+                  onChange={(e) => {
+                    setCasa(e.target.value);
+                  }}
+                >
+                  <option value="Casa 2" defaultValue>
+                    Casa 2
+                  </option>
+                  <option value="Casa 5">Casa 5</option>
+                  <option value="Casa 6">Casa 6</option>
+                  <option value="Casa 8">Casa 8</option>
+                  <option value="Casa 9">Casa 9 (Ascochinga)</option>
+                  <option value="Casa 14">Casa 14</option>
+                </select>
+              )}
+              {filterType == "Edad" && (
+                <select
+                  value={edad}
+                  onChange={(e) => {
+                    setEdad(e.target.value);
+                  }}
+                >
+                  <option value="Mayores de 18" defaultValue>
+                    Mayores 18
+                  </option>
+                  <option value="Menores de 18">Menores 18</option>
+                </select>
+              )}
+              {filterType == "Discapacidad" && (
+                <select
+                  value={discapacidad}
+                  onChange={(e) => {
+                    setDiscapacidad(e.target.value);
+                  }}
+                >
+                  <option value="No" defaultValue>
+                    No
+                  </option>
+                  <option value="Si">Si</option>
+                </select>
+              )}
+              {filterType == "Curatela" && (
+                <select
+                  value={curatela}
+                  onChange={(e) => {
+                    setCuratela(e.target.value);
+                  }}
+                >
+                  <option value="No" defaultValue>
+                    No
+                  </option>
+                  <option value="Si">Si</option>
+                  <option value="En trámite">En trámite</option>
+                </select>
+              )}
+              {filterType == "Pensión" && (
+                <select
+                  value={pension}
+                  onChange={(e) => {
+                    setPension(e.target.value);
+                  }}
+                >
+                  <option value="No" defaultValue>
+                    No
+                  </option>
+                  <option value="Si">Si</option>
+                  <option value="En trámite">En trámite</option>
+                </select>
+              )}
+            </div>
+          </div>
+        </>
       )}
       <hr />
       {singlePersonaMode === false && (
         <>
-          <Container>
-            <table className={style.table}>
-              <tbody>
-                <tr className={style.tr}>
-                  <th className={style.th}>Nombre</th>
-                  <th className={style.th}>Apellido</th>
-                  {discapacidad != "Si" ? (
-                    <th className={style.th}>Edad</th>
-                  ) : (
-                    <th className={style.th}>Discapacidad</th>
-                  )}
-                  <th className={style.th}>Casa</th>
-                  <th className={style.th}>Acción</th>
-                </tr>
-                {filterType == "---" &&
-                  personas
-                    .filter((persona) => persona.apellido.includes(finalQuery))
-                    .map((persona) => (
-                      <tr className={style.tr} key={persona._id}>
-                        <td className={style.td}>{persona.nombre}</td>
-                        <td className={style.td}>{persona.apellido}</td>
-                        <td className={style.td}>{persona.edad}</td>
-                        <td className={style.td}>{persona.casa}</td>
-                        <td className={style.td}>
-                          <button
-                            className="btn btn-success"
-                            onClick={() => handleClick(persona._id)}
-                          >
-                            Gestionar
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                {filterType == "Casa" &&
-                  personas
-                    .filter((persona) => persona.casa.includes(casa))
-                    .map((persona) => (
-                      <tr className={style.tr} key={persona._id}>
-                        <td className={style.td}>{persona.nombre}</td>
-                        <td className={style.td}>{persona.apellido}</td>
-                        <td className={style.td}>{persona.edad}</td>
-                        <td className={style.td}>{persona.casa}</td>
-                        <td className={style.td}>
-                          <button
-                            className="btn btn-success"
-                            onClick={() => handleClick(persona._id)}
-                          >
-                            Gestionar
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                {filterType == "Edad" && (
-                  <>
-                    {edad == "Mayores de 18" &&
-                      mayores18.map((persona) => (
-                        <tr className={style.tr} key={persona._id}>
-                          <td className={style.td}>{persona.nombre}</td>
-                          <td className={style.td}>{persona.apellido}</td>
-                          <td className={style.td}>{persona.edad}</td>
-                          <td className={style.td}>{persona.casa}</td>
-                          <td className={style.td}>
-                            <button
-                              className="btn btn-success"
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    {edad == "Menores de 18" &&
-                      menores18.map((persona) => (
-                        <tr className={style.tr} key={persona._id}>
-                          <td className={style.td}>{persona.nombre}</td>
-                          <td className={style.td}>{persona.apellido}</td>
-                          <td className={style.td}>{persona.edad}</td>
-                          <td className={style.td}>{persona.casa}</td>
-                          <td className={style.td}>
-                            <button
-                              className="btn btn-success"
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                  </>
-                )}
-                {filterType == "Discapacidad" && (
-                  <>
-                    {discapacidad == "Si" &&
-                      tieneDiscapacidad.map((persona) => (
-                        <tr className={style.tr} key={persona._id}>
-                          <td className={style.td}>{persona.nombre}</td>
-                          <td className={style.td}>{persona.apellido}</td>
-                          <td className={style.td}>
-                            {persona.tipo_discapacidad}
-                          </td>
-                          <td className={style.td}>{persona.casa}</td>
-                          <td className={style.td}>
-                            <button
-                              className="btn btn-success"
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    {discapacidad == "No" &&
-                      noTieneDiscapacidad.map((persona) => (
-                        <tr className={style.tr} key={persona._id}>
-                          <td className={style.td}>{persona.nombre}</td>
-                          <td className={style.td}>{persona.apellido}</td>
-                          <td className={style.td}>{persona.edad}</td>
-                          <td className={style.td}>{persona.casa}</td>
-                          <td className={style.td}>
-                            <button
-                              className="btn btn-success"
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                  </>
-                )}
-                {filterType == "Curatela" && (
-                  <>
-                    {curatela == "Si" &&
-                      tieneCuratela.map((persona) => (
-                        <tr className={style.tr} key={persona._id}>
-                          <td className={style.td}>{persona.nombre}</td>
-                          <td className={style.td}>{persona.apellido}</td>
-                          <td className={style.td}>{persona.edad}</td>
-                          <td className={style.td}>{persona.casa}</td>
-                          <td className={style.td}>
-                            <button
-                              className="btn btn-success"
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    {curatela == "No" &&
-                      noTieneCuratela.map((persona) => (
-                        <tr className={style.tr} key={persona._id}>
-                          <td className={style.td}>{persona.nombre}</td>
-                          <td className={style.td}>{persona.apellido}</td>
-                          <td className={style.td}>{persona.edad}</td>
-                          <td className={style.td}>{persona.casa}</td>
-                          <td className={style.td}>
-                            <button
-                              className="btn btn-success"
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    {curatela == "En trámite" &&
-                      curatelaEnTramite.map((persona) => (
-                        <tr className={style.tr} key={persona._id}>
-                          <td className={style.td}>{persona.nombre}</td>
-                          <td className={style.td}>{persona.apellido}</td>
-                          <td className={style.td}>{persona.edad}</td>
-                          <td className={style.td}>{persona.casa}</td>
-                          <td className={style.td}>
-                            <button
-                              className="btn btn-success"
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                  </>
-                )}
-                {filterType == "Pensión" && (
-                  <>
-                    {pension == "Si" &&
-                      recibePension.map((persona) => (
-                        <tr className={style.tr} key={persona._id}>
-                          <td className={style.td}>{persona.nombre}</td>
-                          <td className={style.td}>{persona.apellido}</td>
-                          <td className={style.td}>{persona.edad}</td>
-                          <td className={style.td}>{persona.casa}</td>
-                          <td className={style.td}>
-                            <button
-                              className="btn btn-success"
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    {pension == "No" &&
-                      noRecibePension.map((persona) => (
-                        <tr className={style.tr} key={persona._id}>
-                          <td className={style.td}>{persona.nombre}</td>
-                          <td className={style.td}>{persona.apellido}</td>
-                          <td className={style.td}>{persona.edad}</td>
-                          <td className={style.td}>{persona.casa}</td>
-                          <td className={style.td}>
-                            <button
-                              className="btn btn-success"
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    {pension == "En trámite" &&
-                      pensionEnTramite.map((persona) => (
-                        <tr className={style.tr} key={persona._id}>
-                          <td className={style.td}>{persona.nombre}</td>
-                          <td className={style.td}>{persona.apellido}</td>
-                          <td className={style.td}>{persona.edad}</td>
-                          <td className={style.td}>{persona.casa}</td>
-                          <td className={style.td}>
-                            <button
-                              className="btn btn-success"
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                  </>
-                )}
-              </tbody>
-            </table>
-          </Container>
+          <div>
+            <div className={style.trTitle}>
+              <p className={style.th} id={style.bold}>
+                Nombre
+              </p>
+              <p className={style.th} id={style.bold}>
+                Apellido
+              </p>
+              {discapacidad != "Si" ? (
+                <p className={style.th} id={style.bold}>
+                  Edad
+                </p>
+              ) : (
+                <p className={style.th} id={style.bold}>
+                  Discapacidad
+                </p>
+              )}
+              <p className={style.th} id={style.bold}>
+                Casa
+              </p>
+              <p className={style.th} id={style.bold}>
+                Accion
+              </p>
+            </div>
+            {filterType == "---" &&
+              personas
+                .filter((persona) => persona.apellido.includes(finalQuery))
+                .map((persona) => (
+                  <div className={style.trBody} key={persona._id}>
+                    <p className={style.td}>{persona.nombre}</p>
+                    <p className={style.td}>{persona.apellido}</p>
+                    <p className={style.td}>{persona.edad}</p>
+                    <p className={style.td}>{persona.casa}</p>
+                    <div className={style.tdButton}>
+                      <button
+                        className={style.buttonGestionar}
+                        onClick={() => handleClick(persona._id)}
+                      >
+                        Gestionar
+                      </button>
+                    </div>
+                  </div>
+                ))}
+            {filterType == "Casa" &&
+              personas
+                .filter((persona) => persona.casa.includes(casa))
+                .map((persona) => (
+                  <div className={style.trBody} key={persona._id}>
+                    <p className={style.td}>{persona.nombre}</p>
+                    <p className={style.td}>{persona.apellido}</p>
+                    <p className={style.td}>{persona.edad}</p>
+                    <p className={style.td} id={style.bold}>{persona.casa}</p>
+                    <div className={style.tdButton}>
+                      <button
+                        className={style.buttonGestionar}
+                        onClick={() => handleClick(persona._id)}
+                      >
+                        Gestionar
+                      </button>
+                    </div>
+                  </div>
+                ))}
+            {filterType == "Edad" && (
+              <>
+                {edad == "Mayores de 18" &&
+                  mayores18.map((persona) => (
+                    <div className={style.trBody} key={persona._id}>
+                      <p className={style.td}>{persona.nombre}</p>
+                      <p className={style.td}>{persona.apellido}</p>
+                      <p className={style.td} id={style.bold}>{persona.edad}</p>
+                      <p className={style.td}>{persona.casa}</p>
+                      <div className={style.tdButton}>
+                        <button
+                          className={style.buttonGestionar}
+                          onClick={() => handleClick(persona._id)}
+                        >
+                          Gestionar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                {edad == "Menores de 18" &&
+                  menores18.map((persona) => (
+                    <div className={style.trBody} key={persona._id}>
+                      <p className={style.td}>{persona.nombre}</p>
+                      <p className={style.td}>{persona.apellido}</p>
+                      <p className={style.td} id={style.bold}>{persona.edad}</p>
+                      <p className={style.td}>{persona.casa}</p>
+                      <div className={style.tdButton}>
+                        <button
+                          className={style.buttonGestionar}
+                          onClick={() => handleClick(persona._id)}
+                        >
+                          Gestionar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+              </>
+            )}
+            {filterType == "Discapacidad" && (
+              <>
+                {discapacidad == "Si" &&
+                  tieneDiscapacidad.map((persona) => (
+                    <div className={style.trBody} key={persona._id}>
+                      <p className={style.td}>{persona.nombre}</p>
+                      <p className={style.td}>{persona.apellido}</p>
+                      <p className={style.td} id={style.bold}>{persona.tipo_discapacidad}</p>
+                      <p className={style.td}>{persona.casa}</p>
+                      <div className={style.tdButton}>
+                        <button
+                          className={style.buttonGestionar}
+                          onClick={() => handleClick(persona._id)}
+                        >
+                          Gestionar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                {discapacidad == "No" &&
+                  noTieneDiscapacidad.map((persona) => (
+                    <div className={style.trBody} key={persona._id}>
+                      <p className={style.td}>{persona.nombre}</p>
+                      <p className={style.td}>{persona.apellido}</p>
+                      <p className={style.td}>{persona.edad}</p>
+                      <p className={style.td}>{persona.casa}</p>
+                      <div className={style.tdButton}>
+                        <button
+                          className={style.buttonGestionar}
+                          onClick={() => handleClick(persona._id)}
+                        >
+                          Gestionar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+              </>
+            )}
+            {filterType == "Curatela" && (
+              <>
+                {curatela == "Si" &&
+                  tieneCuratela.map((persona) => (
+                    <div className={style.trBody} key={persona._id}>
+                      <p className={style.td}>{persona.nombre}</p>
+                      <p className={style.td}>{persona.apellido}</p>
+                      <p className={style.td}>{persona.edad}</p>
+                      <p className={style.td}>{persona.casa}</p>
+                      <div className={style.tdButton}>
+                        <button
+                          className={style.buttonGestionar}
+                          onClick={() => handleClick(persona._id)}
+                        >
+                          Gestionar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                {curatela == "No" &&
+                  noTieneCuratela.map((persona) => (
+                    <div className={style.trBody} key={persona._id}>
+                      <p className={style.td}>{persona.nombre}</p>
+                      <p className={style.td}>{persona.apellido}</p>
+                      <p className={style.td}>{persona.edad}</p>
+                      <p className={style.td}>{persona.casa}</p>
+                      <div className={style.tdButton}>
+                        <button
+                          className={style.buttonGestionar}
+                          onClick={() => handleClick(persona._id)}
+                        >
+                          Gestionar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                {curatela == "En trámite" &&
+                  curatelaEnTramite.map((persona) => (
+                    <div className={style.trBody} key={persona._id}>
+                      <p className={style.td}>{persona.nombre}</p>
+                      <p className={style.td}>{persona.apellido}</p>
+                      <p className={style.td}>{persona.edad}</p>
+                      <p className={style.td}>{persona.casa}</p>
+                      <div className={style.tdButton}>
+                        <button
+                          className={style.buttonGestionar}
+                          onClick={() => handleClick(persona._id)}
+                        >
+                          Gestionar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+              </>
+            )}
+            {filterType == "Pensión" && (
+              <>
+                {pension == "Si" &&
+                  recibePension.map((persona) => (
+                    <div className={style.trBody} key={persona._id}>
+                      <p className={style.td}>{persona.nombre}</p>
+                      <p className={style.td}>{persona.apellido}</p>
+                      <p className={style.td}>{persona.edad}</p>
+                      <p className={style.td}>{persona.casa}</p>
+                      <div className={style.tdButton}>
+                        <button
+                          className={style.buttonGestionar}
+                          onClick={() => handleClick(persona._id)}
+                        >
+                          Gestionar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                {pension == "No" &&
+                  noRecibePension.map((persona) => (
+                    <div className={style.trBody} key={persona._id}>
+                      <p className={style.td}>{persona.nombre}</p>
+                      <p className={style.td}>{persona.apellido}</p>
+                      <p className={style.td}>{persona.edad}</p>
+                      <p className={style.td}>{persona.casa}</p>
+                      <div className={style.tdButton}>
+                        <button
+                          className={style.buttonGestionar}
+                          onClick={() => handleClick(persona._id)}
+                        >
+                          Gestionar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                {pension == "En trámite" &&
+                  pensionEnTramite.map((persona) => (
+                    <div className={style.trBody} key={persona._id}>
+                      <p className={style.td}>{persona.nombre}</p>
+                      <p className={style.td}>{persona.apellido}</p>
+                      <p className={style.td}>{persona.edad}</p>
+                      <p className={style.td}>{persona.casa}</p>
+                      <div className={style.tdButton}>
+                        <button
+                          className={style.buttonGestionar}
+                          onClick={() => handleClick(persona._id)}
+                        >
+                          Gestionar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+              </>
+            )}
+          </div>
         </>
       )}
       {singlePersonaMode === true && (

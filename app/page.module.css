@@ -9,10 +9,66 @@
   margin-top: 7px;
   border-radius: 6px;
 }
-.categoryBodyBirth {
+.alertsRow{
   background-color: rgb(238, 235, 207);
-  padding: 6px;
-  padding-left: 10px;
+  max-width: 940px;
+  height: 30px;
+  padding-left: 6px;
+  padding-top: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.alertsRowCertif{
+  background-color: rgb(202, 226, 239);
+  max-width: 940px;
+  height: 30px;
+  padding-left: 6px;
+  padding-top: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.alertsRowTurnos{
+  background-color: rgb(189, 217, 201);
+  max-width: 940px;
+  height: 30px;
+  padding-left: 6px;
+  padding-top: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.alertsColStart{
+  width: 300px;
+  display: flex;
+  flex-direction: Col;
+  justify-content: flex-start;
+}
+.alertsColTurnosStart{
+  width: 400px;
+  display: flex;
+  flex-direction: Col;
+  justify-content: flex-start;
+}
+.alertsColTurnos{
+  width: 250px;
+  display: flex;
+  flex-direction: Col;
+  justify-content: flex-start;
+}
+.alertsCol{
+  width: 300px;
+  display: flex;
+  flex-direction: Col;
+  justify-content: flex-start;
+}
+.alertsColEnd{
+  width: 140px;
+  padding-right: 8px;
+  display: flex;
+  flex-direction: Col;
+  justify-content: flex-end;
 }
 .categoryTitleCertif {
   background-color: rgb(122, 188, 225);
@@ -21,21 +77,11 @@
   border-radius: 6px;
   margin-top: 7px;
 }
-.categoryBodyCertif {
-  background-color: rgb(202, 226, 239);
-  padding: 6px;
-  padding-left: 10px;
-}
 .categoryTitleTurnos {
   background-color: rgb(126, 222, 167);
   padding: 6px;
   padding-left: 10px;
   border-radius: 6px;
   margin-top: 7px;
-}
-.categoryBodyTurnos {
-  background-color: rgb(189, 217, 201);
-  padding: 6px;
-  padding-left: 10px;
 }
 
