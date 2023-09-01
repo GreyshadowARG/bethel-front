@@ -69,6 +69,10 @@
 #paddingLeft {
   padding-left: 6px;
 }
+#loadingSpinner{
+  padding-top: 60px;
+  opacity: 60%;
+}
 .buttonGestionar {
   background-color: rgb(26, 120, 73);
   color: white;

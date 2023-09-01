@@ -84,4 +84,8 @@
   border-radius: 6px;
   margin-top: 7px;
 }
+#loadingSpinner{
+padding-top: 10px;
+opacity: 60%;
+}
 

@@ -274,255 +274,286 @@ export default function BuscarPersona() {
       <hr />
       {singlePersonaMode === false && (
         <>
-          <div>
-            <div className={style.trTitle}>
+          <div className={style.trTitle}>
+            <p className={style.th} id={style.bold}>
+              Nombre
+            </p>
+            <p className={style.th} id={style.bold}>
+              Apellido
+            </p>
+            {discapacidad != "Si" ? (
               <p className={style.th} id={style.bold}>
-                Nombre
+                Edad
               </p>
+            ) : (
               <p className={style.th} id={style.bold}>
-                Apellido
+                Discapacidad
               </p>
-              {discapacidad != "Si" ? (
-                <p className={style.th} id={style.bold}>
-                  Edad
-                </p>
-              ) : (
-                <p className={style.th} id={style.bold}>
-                  Discapacidad
-                </p>
-              )}
-              <p className={style.th} id={style.bold}>
-                Casa
-              </p>
-              <p className={style.th} id={style.bold}>
-                Accion
-              </p>
-            </div>
-            {filterType == "---" &&
-              personas
-                .filter((persona) => persona.apellido.includes(finalQuery))
-                .map((persona) => (
-                  <div className={style.trBody} key={persona._id}>
-                    <p className={style.td}>{persona.nombre}</p>
-                    <p className={style.td}>{persona.apellido}</p>
-                    <p className={style.td}>{persona.edad}</p>
-                    <p className={style.td}>{persona.casa}</p>
-                    <div className={style.tdButton}>
-                      <button
-                        className={style.buttonGestionar}
-                        onClick={() => handleClick(persona._id)}
-                      >
-                        Gestionar
-                      </button>
-                    </div>
-                  </div>
-                ))}
-            {filterType == "Casa" &&
-              personas
-                .filter((persona) => persona.casa.includes(casa))
-                .map((persona) => (
-                  <div className={style.trBody} key={persona._id}>
-                    <p className={style.td}>{persona.nombre}</p>
-                    <p className={style.td}>{persona.apellido}</p>
-                    <p className={style.td}>{persona.edad}</p>
-                    <p className={style.td} id={style.bold}>{persona.casa}</p>
-                    <div className={style.tdButton}>
-                      <button
-                        className={style.buttonGestionar}
-                        onClick={() => handleClick(persona._id)}
-                      >
-                        Gestionar
-                      </button>
-                    </div>
-                  </div>
-                ))}
-            {filterType == "Edad" && (
-              <>
-                {edad == "Mayores de 18" &&
-                  mayores18.map((persona) => (
-                    <div className={style.trBody} key={persona._id}>
-                      <p className={style.td}>{persona.nombre}</p>
-                      <p className={style.td}>{persona.apellido}</p>
-                      <p className={style.td} id={style.bold}>{persona.edad}</p>
-                      <p className={style.td}>{persona.casa}</p>
-                      <div className={style.tdButton}>
-                        <button
-                          className={style.buttonGestionar}
-                          onClick={() => handleClick(persona._id)}
-                        >
-                          Gestionar
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                {edad == "Menores de 18" &&
-                  menores18.map((persona) => (
-                    <div className={style.trBody} key={persona._id}>
-                      <p className={style.td}>{persona.nombre}</p>
-                      <p className={style.td}>{persona.apellido}</p>
-                      <p className={style.td} id={style.bold}>{persona.edad}</p>
-                      <p className={style.td}>{persona.casa}</p>
-                      <div className={style.tdButton}>
-                        <button
-                          className={style.buttonGestionar}
-                          onClick={() => handleClick(persona._id)}
-                        >
-                          Gestionar
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-              </>
             )}
-            {filterType == "Discapacidad" && (
-              <>
-                {discapacidad == "Si" &&
-                  tieneDiscapacidad.map((persona) => (
-                    <div className={style.trBody} key={persona._id}>
-                      <p className={style.td}>{persona.nombre}</p>
-                      <p className={style.td}>{persona.apellido}</p>
-                      <p className={style.td} id={style.bold}>{persona.tipo_discapacidad}</p>
-                      <p className={style.td}>{persona.casa}</p>
-                      <div className={style.tdButton}>
-                        <button
-                          className={style.buttonGestionar}
-                          onClick={() => handleClick(persona._id)}
-                        >
-                          Gestionar
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                {discapacidad == "No" &&
-                  noTieneDiscapacidad.map((persona) => (
-                    <div className={style.trBody} key={persona._id}>
-                      <p className={style.td}>{persona.nombre}</p>
-                      <p className={style.td}>{persona.apellido}</p>
-                      <p className={style.td}>{persona.edad}</p>
-                      <p className={style.td}>{persona.casa}</p>
-                      <div className={style.tdButton}>
-                        <button
-                          className={style.buttonGestionar}
-                          onClick={() => handleClick(persona._id)}
-                        >
-                          Gestionar
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-              </>
-            )}
-            {filterType == "Curatela" && (
-              <>
-                {curatela == "Si" &&
-                  tieneCuratela.map((persona) => (
-                    <div className={style.trBody} key={persona._id}>
-                      <p className={style.td}>{persona.nombre}</p>
-                      <p className={style.td}>{persona.apellido}</p>
-                      <p className={style.td}>{persona.edad}</p>
-                      <p className={style.td}>{persona.casa}</p>
-                      <div className={style.tdButton}>
-                        <button
-                          className={style.buttonGestionar}
-                          onClick={() => handleClick(persona._id)}
-                        >
-                          Gestionar
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                {curatela == "No" &&
-                  noTieneCuratela.map((persona) => (
-                    <div className={style.trBody} key={persona._id}>
-                      <p className={style.td}>{persona.nombre}</p>
-                      <p className={style.td}>{persona.apellido}</p>
-                      <p className={style.td}>{persona.edad}</p>
-                      <p className={style.td}>{persona.casa}</p>
-                      <div className={style.tdButton}>
-                        <button
-                          className={style.buttonGestionar}
-                          onClick={() => handleClick(persona._id)}
-                        >
-                          Gestionar
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                {curatela == "En trámite" &&
-                  curatelaEnTramite.map((persona) => (
-                    <div className={style.trBody} key={persona._id}>
-                      <p className={style.td}>{persona.nombre}</p>
-                      <p className={style.td}>{persona.apellido}</p>
-                      <p className={style.td}>{persona.edad}</p>
-                      <p className={style.td}>{persona.casa}</p>
-                      <div className={style.tdButton}>
-                        <button
-                          className={style.buttonGestionar}
-                          onClick={() => handleClick(persona._id)}
-                        >
-                          Gestionar
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-              </>
-            )}
-            {filterType == "Pensión" && (
-              <>
-                {pension == "Si" &&
-                  recibePension.map((persona) => (
-                    <div className={style.trBody} key={persona._id}>
-                      <p className={style.td}>{persona.nombre}</p>
-                      <p className={style.td}>{persona.apellido}</p>
-                      <p className={style.td}>{persona.edad}</p>
-                      <p className={style.td}>{persona.casa}</p>
-                      <div className={style.tdButton}>
-                        <button
-                          className={style.buttonGestionar}
-                          onClick={() => handleClick(persona._id)}
-                        >
-                          Gestionar
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                {pension == "No" &&
-                  noRecibePension.map((persona) => (
-                    <div className={style.trBody} key={persona._id}>
-                      <p className={style.td}>{persona.nombre}</p>
-                      <p className={style.td}>{persona.apellido}</p>
-                      <p className={style.td}>{persona.edad}</p>
-                      <p className={style.td}>{persona.casa}</p>
-                      <div className={style.tdButton}>
-                        <button
-                          className={style.buttonGestionar}
-                          onClick={() => handleClick(persona._id)}
-                        >
-                          Gestionar
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                {pension == "En trámite" &&
-                  pensionEnTramite.map((persona) => (
-                    <div className={style.trBody} key={persona._id}>
-                      <p className={style.td}>{persona.nombre}</p>
-                      <p className={style.td}>{persona.apellido}</p>
-                      <p className={style.td}>{persona.edad}</p>
-                      <p className={style.td}>{persona.casa}</p>
-                      <div className={style.tdButton}>
-                        <button
-                          className={style.buttonGestionar}
-                          onClick={() => handleClick(persona._id)}
-                        >
-                          Gestionar
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-              </>
-            )}
+            <p className={style.th} id={style.bold}>
+              Casa
+            </p>
+            <p className={style.th} id={style.bold}>
+              Accion
+            </p>
           </div>
+          {loadData ? (
+            <>
+              <div className="text-center" id={style.loadingSpinner}>
+                <div className="spinner-border text-secondary" role="status">
+                  <span className="sr-only"></span>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div>
+                {filterType == "---" &&
+                  personas
+                    .filter((persona) => persona.apellido.includes(finalQuery))
+                    .map((persona) => (
+                      <div className={style.trBody} key={persona._id}>
+                        <p className={style.td}>{persona.nombre}</p>
+                        <p className={style.td}>{persona.apellido}</p>
+                        <p className={style.td}>{persona.edad}</p>
+                        <p className={style.td}>{persona.casa}</p>
+                        <div className={style.tdButton}>
+                          <button
+                            className={style.buttonGestionar}
+                            onClick={() => handleClick(persona._id)}
+                          >
+                            Gestionar
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                {filterType == "Casa" &&
+                  personas
+                    .filter((persona) => persona.casa.includes(casa))
+                    .filter((persona) => persona.apellido.includes(finalQuery))
+                    .map((persona) => (
+                      <div className={style.trBody} key={persona._id}>
+                        <p className={style.td}>{persona.nombre}</p>
+                        <p className={style.td}>{persona.apellido}</p>
+                        <p className={style.td}>{persona.edad}</p>
+                        <p className={style.td} id={style.bold}>
+                          {persona.casa}
+                        </p>
+                        <div className={style.tdButton}>
+                          <button
+                            className={style.buttonGestionar}
+                            onClick={() => handleClick(persona._id)}
+                          >
+                            Gestionar
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                {filterType == "Edad" && (
+                  <>
+                    {edad == "Mayores de 18" &&
+                      mayores18.filter((persona) => persona.apellido.includes(finalQuery))
+                      .map((persona) => (
+                        <div className={style.trBody} key={persona._id}>
+                          <p className={style.td}>{persona.nombre}</p>
+                          <p className={style.td}>{persona.apellido}</p>
+                          <p className={style.td} id={style.bold}>
+                            {persona.edad}
+                          </p>
+                          <p className={style.td}>{persona.casa}</p>
+                          <div className={style.tdButton}>
+                            <button
+                              className={style.buttonGestionar}
+                              onClick={() => handleClick(persona._id)}
+                            >
+                              Gestionar
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    {edad == "Menores de 18" &&
+                      menores18.filter((persona) => persona.apellido.includes(finalQuery))
+                      .map((persona) => (
+                        <div className={style.trBody} key={persona._id}>
+                          <p className={style.td}>{persona.nombre}</p>
+                          <p className={style.td}>{persona.apellido}</p>
+                          <p className={style.td} id={style.bold}>
+                            {persona.edad}
+                          </p>
+                          <p className={style.td}>{persona.casa}</p>
+                          <div className={style.tdButton}>
+                            <button
+                              className={style.buttonGestionar}
+                              onClick={() => handleClick(persona._id)}
+                            >
+                              Gestionar
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                  </>
+                )}
+                {filterType == "Discapacidad" && (
+                  <>
+                    {discapacidad == "Si" &&
+                      tieneDiscapacidad.filter((persona) => persona.apellido.includes(finalQuery))
+                      .map((persona) => (
+                        <div className={style.trBody} key={persona._id}>
+                          <p className={style.td}>{persona.nombre}</p>
+                          <p className={style.td}>{persona.apellido}</p>
+                          <p className={style.td} id={style.bold}>
+                            {persona.tipo_discapacidad}
+                          </p>
+                          <p className={style.td}>{persona.casa}</p>
+                          <div className={style.tdButton}>
+                            <button
+                              className={style.buttonGestionar}
+                              onClick={() => handleClick(persona._id)}
+                            >
+                              Gestionar
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    {discapacidad == "No" &&
+                      noTieneDiscapacidad.filter((persona) => persona.apellido.includes(finalQuery))
+                      .map((persona) => (
+                        <div className={style.trBody} key={persona._id}>
+                          <p className={style.td}>{persona.nombre}</p>
+                          <p className={style.td}>{persona.apellido}</p>
+                          <p className={style.td}>{persona.edad}</p>
+                          <p className={style.td}>{persona.casa}</p>
+                          <div className={style.tdButton}>
+                            <button
+                              className={style.buttonGestionar}
+                              onClick={() => handleClick(persona._id)}
+                            >
+                              Gestionar
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                  </>
+                )}
+                {filterType == "Curatela" && (
+                  <>
+                    {curatela == "Si" &&
+                      tieneCuratela.filter((persona) => persona.apellido.includes(finalQuery))
+                      .map((persona) => (
+                        <div className={style.trBody} key={persona._id}>
+                          <p className={style.td}>{persona.nombre}</p>
+                          <p className={style.td}>{persona.apellido}</p>
+                          <p className={style.td}>{persona.edad}</p>
+                          <p className={style.td}>{persona.casa}</p>
+                          <div className={style.tdButton}>
+                            <button
+                              className={style.buttonGestionar}
+                              onClick={() => handleClick(persona._id)}
+                            >
+                              Gestionar
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    {curatela == "No" &&
+                      noTieneCuratela.filter((persona) => persona.apellido.includes(finalQuery))
+                      .map((persona) => (
+                        <div className={style.trBody} key={persona._id}>
+                          <p className={style.td}>{persona.nombre}</p>
+                          <p className={style.td}>{persona.apellido}</p>
+                          <p className={style.td}>{persona.edad}</p>
+                          <p className={style.td}>{persona.casa}</p>
+                          <div className={style.tdButton}>
+                            <button
+                              className={style.buttonGestionar}
+                              onClick={() => handleClick(persona._id)}
+                            >
+                              Gestionar
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    {curatela == "En trámite" &&
+                      curatelaEnTramite.filter((persona) => persona.apellido.includes(finalQuery))
+                      .map((persona) => (
+                        <div className={style.trBody} key={persona._id}>
+                          <p className={style.td}>{persona.nombre}</p>
+                          <p className={style.td}>{persona.apellido}</p>
+                          <p className={style.td}>{persona.edad}</p>
+                          <p className={style.td}>{persona.casa}</p>
+                          <div className={style.tdButton}>
+                            <button
+                              className={style.buttonGestionar}
+                              onClick={() => handleClick(persona._id)}
+                            >
+                              Gestionar
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                  </>
+                )}
+                {filterType == "Pensión" && (
+                  <>
+                    {pension == "Si" &&
+                      recibePension.filter((persona) => persona.apellido.includes(finalQuery))
+                      .map((persona) => (
+                        <div className={style.trBody} key={persona._id}>
+                          <p className={style.td}>{persona.nombre}</p>
+                          <p className={style.td}>{persona.apellido}</p>
+                          <p className={style.td}>{persona.edad}</p>
+                          <p className={style.td}>{persona.casa}</p>
+                          <div className={style.tdButton}>
+                            <button
+                              className={style.buttonGestionar}
+                              onClick={() => handleClick(persona._id)}
+                            >
+                              Gestionar
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    {pension == "No" &&
+                      noRecibePension.filter((persona) => persona.apellido.includes(finalQuery))
+                      .map((persona) => (
+                        <div className={style.trBody} key={persona._id}>
+                          <p className={style.td}>{persona.nombre}</p>
+                          <p className={style.td}>{persona.apellido}</p>
+                          <p className={style.td}>{persona.edad}</p>
+                          <p className={style.td}>{persona.casa}</p>
+                          <div className={style.tdButton}>
+                            <button
+                              className={style.buttonGestionar}
+                              onClick={() => handleClick(persona._id)}
+                            >
+                              Gestionar
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    {pension == "En trámite" &&
+                      pensionEnTramite.filter((persona) => persona.apellido.includes(finalQuery))
+                      .map((persona) => (
+                        <div className={style.trBody} key={persona._id}>
+                          <p className={style.td}>{persona.nombre}</p>
+                          <p className={style.td}>{persona.apellido}</p>
+                          <p className={style.td}>{persona.edad}</p>
+                          <p className={style.td}>{persona.casa}</p>
+                          <div className={style.tdButton}>
+                            <button
+                              className={style.buttonGestionar}
+                              onClick={() => handleClick(persona._id)}
+                            >
+                              Gestionar
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                  </>
+                )}
+              </div>
+            </>
+          )}
         </>
       )}
       {singlePersonaMode === true && (
