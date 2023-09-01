@@ -11,6 +11,8 @@ import Col from "react-bootstrap/Col";
 const DatosPersonales = ({ persona, getLoadData }) => {
   const [edit, setEdit] = useState("");
 
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
   const [sexo, setSexo] = useState("");
   const [dni, setDni] = useState("");
   const [casa, setCasa] = useState("");
@@ -41,6 +43,8 @@ const DatosPersonales = ({ persona, getLoadData }) => {
       await axios.post(
         EDITDATOSPERSONALES_URL,
         JSON.stringify({
+          nombre: nombre,
+          apellido: apellido,
           sexo: sexo,
           dni: dni,
           casa: casa,
@@ -62,6 +66,8 @@ const DatosPersonales = ({ persona, getLoadData }) => {
   };
 
   const setData = () => {
+    setNombre(persona.nombre);
+    setApellido(persona.apellido);
     setSexo(persona.sexo);
     setDni(persona.dni);
     setCasa(persona.casa);
@@ -99,15 +105,44 @@ const DatosPersonales = ({ persona, getLoadData }) => {
         </div>
       </Row>
       <Row>
-        <Row>
-          <Col id={style.bold}>Sexo</Col>
-          <Col id={style.bold}>Dni</Col>
-          <Col id={style.bold}>Edad</Col>
-          <Col id={style.bold}>Casa</Col>
-        </Row>
-
         {edit == "EditarDatosPersonales" ? (
           <>
+            <Row>
+              <Col id={style.bold}>Nombre</Col>
+              <Col id={style.bold}>Apellido</Col>
+              <Col></Col>
+              <Col></Col>
+            </Row>
+            <Row>
+              <Col>
+                <input
+                  type="text"
+                  defaultValue={nombre}
+                  onChange={(e) => {
+                    setNombre(e.target.value);
+                  }}
+                />
+              </Col>
+              <Col>
+                <input
+                  type="text"
+                  defaultValue={apellido}
+                  onChange={(e) => {
+                    setApellido(e.target.value);
+                  }}
+                />
+              </Col>
+              <Col></Col>
+              <Col></Col>
+            </Row>
+            <br />
+            <br />
+            <Row>
+              <Col id={style.bold}>Sexo</Col>
+              <Col id={style.bold}>Dni</Col>
+              <Col id={style.bold}>Edad</Col>
+              <Col id={style.bold}>Casa</Col>
+            </Row>
             <Row>
               <Col>
                 <select
@@ -200,6 +235,26 @@ const DatosPersonales = ({ persona, getLoadData }) => {
           </>
         ) : (
           <>
+            <Row>
+              <Col id={style.bold}>Nombre</Col>
+              <Col id={style.bold}>Apellido</Col>
+              <Col></Col>
+              <Col></Col>
+            </Row>
+            <Row>
+              <Col>{persona.nombre}</Col>
+              <Col>{persona.apellido}</Col>
+              <Col></Col>
+              <Col></Col>
+            </Row>
+            <br />
+            <br />
+            <Row>
+              <Col id={style.bold}>Sexo</Col>
+              <Col id={style.bold}>Dni</Col>
+              <Col id={style.bold}>Edad</Col>
+              <Col id={style.bold}>Casa</Col>
+            </Row>
             <Row>
               <Col>{persona.sexo}</Col>
               <Col>{persona.dni}</Col>
