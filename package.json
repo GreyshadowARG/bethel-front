@@ -25,6 +25,7 @@
     "reactstrap": "^9.2.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/node": "20.5.9",
     "standard": "^17.0.0"
   }
