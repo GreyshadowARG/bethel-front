@@ -32,7 +32,7 @@ export function Header() {
             </li>
           ))}
           <li>
-            <button className={styles.logOutButton} onClick={() => signOut()}>CERRAR<br/>SESIÓN</button>
+            <button className={styles.logOutButton} onClick={() => signOut({ callbackUrl: 'https://bethel-app.netlify.app' })}>CERRAR<br/>SESIÓN</button>
           </li>
         </ul>
       </nav>
