@@ -2,7 +2,7 @@
   "name": "cliente-bethel",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8080",
+  "home": "https://bethel-app.netlify.app",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
