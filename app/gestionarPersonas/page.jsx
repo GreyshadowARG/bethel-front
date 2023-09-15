@@ -154,7 +154,8 @@ export default function BuscarPersona() {
 
   return (
     <section>
-      <h2 id={style.bold}>GESTIÓN DE PERSONAS</h2>
+      <h2 className={style.h2} id={style.bold}>GESTIÓN DE PERSONAS</h2>
+      <hr />
       {singlePersonaMode === true ? (
         <button
           className="btn btn-info"
@@ -167,7 +168,6 @@ export default function BuscarPersona() {
         </button>
       ) : (
         <>
-          <br />
           <div className={style.row_buscador}>
             <div className={style.row_buscador}>
               <p id={style.bold}>Buscar por apellido:</p>

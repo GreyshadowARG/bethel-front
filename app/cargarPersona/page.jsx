@@ -325,7 +325,7 @@ export default function CargarPersonas() {
         </div>
       ) : (
         <>
-          <h2 id={style.bold}>NUEVO INRESO</h2>
+          <h2 className={style.h2} id={style.bold}>NUEVO INRESO</h2>
           <hr />
           <form onSubmit={handleSubmit}>
             <Container>

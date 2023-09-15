@@ -6,14 +6,15 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 10px;
 }
 .brand {
   color: white;
+  height: 50px;
   font-weight: bold;
   font-size: 1.2em;
   text-decoration: none;
-  padding-left: 0.6rem;
+  padding-left: 1rem;
+  padding-top: 0.6rem;
 }
 .brand:link {
   text-decoration: none;
@@ -29,11 +30,14 @@
   list-style: none;
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding-right: 1rem;
 }
 .button {
-  padding: 11px 16px 14px 16px;
+  height: 50px;
+  padding: 13px 16px 13px 16px;
   background-color: rgb(48, 167, 147);
+  color: white;
   margin-left: 8px;
 }
 .button:hover {
@@ -50,6 +54,34 @@
   text-decoration: none;
 }
 .button:visited {
+  text-decoration: none;
+  color: white;
+}
+.logOutButton {
+  font-size: 0.8ch;
+  text-decoration: none;
+  padding: 11px 16px 10px 16px;
+  color: white;
+  background-color: rgb(197, 121, 121);
+  margin-left: 8px;
+  border: 0px;
+}
+.logOutButton:hover {
+  text-decoration: none;
+  background-color: rgb(170, 88, 88);
+  transition: 0.2s;
+  color: white;
+}
+.logOutButton:active {
+  text-decoration: none;
+  background-color: rgb(197, 121, 121);
+  color: white;
+}
+.logOutButton:link {
+  color: white;
+  text-decoration: none;
+}
+.logOutButton:visited {
   text-decoration: none;
   color: white;
 }

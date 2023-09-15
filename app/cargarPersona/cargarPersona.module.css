@@ -1,6 +1,9 @@
 #bold{
   font-weight: bold;
 }
+.h2 {
+  line-height:0.7em;
+}
 .newPersona_success {
   display: flex;
   flex-direction: column;

@@ -4,7 +4,6 @@ import style from "./page.module.css";
 
 // bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Spinner } from "reactstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -30,6 +29,10 @@ export default function HomePage() {
   const [proxSemTurnosArray, setProxSemTurnosArray] = useState([]);
   const [proxMesTurnosArray, setProxMesTurnosArray] = useState([]);
 
+  const OrdenarByFecha = (array) => {
+
+  }
+
   useEffect(() => {
     const getData = async () => {
       const fetchBirthdays = await axios.get(GETBIRTHDAYS_URL);
@@ -53,7 +56,7 @@ export default function HomePage() {
 
   return (
     <>
-      <h2 id={style.bold}>GESTIÓN BETHEL</h2>
+      <h2 className={style.h2} id={style.bold}>GESTIÓN BETHEL</h2>
       <hr />
       <section>
         <Row>
