@@ -14,7 +14,8 @@ import { useState, useEffect } from "react";
 // URLs
 const GETBIRTHDAYS_URL = "api/alerts/getBirthdayDates";
 const GETCERTIF_URL = "api/alerts/getVencimientoCertif";
-const GETTURNOS_URL = "api/alerts/getTurnos";
+const GETTURNOSMEDICOS_URL = "api/alerts/getTurnosMedicos";
+const GETTURNOSJUDICIALES_URL = "api/alerts/getTurnosJudiciales";
 
 export default function HomePage() {
   const [loadingData, setLoadingData] = useState(true);
@@ -25,9 +26,12 @@ export default function HomePage() {
   const [hoyCertArray, setHoyCertArray] = useState([]);
   const [proxSemCertArray, setProxSemCertArray] = useState([]);
   const [proxMesCertArray, setProxMesCertArray] = useState([]);
-  const [hoyTurnosArray, setHoyTurnosArray] = useState([]);
-  const [proxSemTurnosArray, setProxSemTurnosArray] = useState([]);
-  const [proxMesTurnosArray, setProxMesTurnosArray] = useState([]);
+  const [hoyTurnosMedicosArray, setHoyTurnosMedicosArray] = useState([]);
+  const [proxSemTurnosMedicosArray, setProxSemTurnosMedicosArray] = useState([]);
+  const [proxMesTurnosMedicosArray, setProxMesTurnosMedicosArray] = useState([]);
+  const [hoyTurnosJudicialesArray, setHoyTurnosJudicialesArray] = useState([]);
+  const [proxSemTurnosJudicialesArray, setProxSemTurnosJudicialesArray] = useState([]);
+  const [proxMesTurnosJudicialesArray, setProxMesTurnosJudicialesArray] = useState([]);
 
   const OrdenarByFecha = (array) => {
 
@@ -37,7 +41,8 @@ export default function HomePage() {
     const getData = async () => {
       const fetchBirthdays = await axios.get(GETBIRTHDAYS_URL);
       const fetchCertif = await axios.get(GETCERTIF_URL);
-      const fetchTurnos = await axios.get(GETTURNOS_URL);
+      const fetchTurnosMedicos = await axios.get(GETTURNOSMEDICOS_URL);
+      const fetchTurnosJudiciales = await axios.get(GETTURNOSJUDICIALES_URL);
 
       setHoyBirthArray(fetchBirthdays.data.hoy);
       setProxSemBirthArray(fetchBirthdays.data.proxSem);
@@ -45,9 +50,12 @@ export default function HomePage() {
       setHoyCertArray(fetchCertif.data.hoy);
       setProxSemCertArray(fetchCertif.data.proxSem);
       setProxMesCertArray(fetchCertif.data.proxMes);
-      setHoyTurnosArray(fetchTurnos.data.hoy);
-      setProxSemTurnosArray(fetchTurnos.data.proxSem);
-      setProxMesTurnosArray(fetchTurnos.data.proxMes);
+      setHoyTurnosMedicosArray(fetchTurnosMedicos.data.hoy);
+      setProxSemTurnosMedicosArray(fetchTurnosMedicos.data.proxSem);
+      setProxMesTurnosMedicosArray(fetchTurnosMedicos.data.proxMes);
+      setHoyTurnosJudicialesArray(fetchTurnosJudiciales.data.hoy);
+      setProxSemTurnosJudicialesArray(fetchTurnosJudiciales.data.proxSem);
+      setProxMesTurnosJudicialesArray(fetchTurnosJudiciales.data.proxMes);
       setLoadingData(false);
     };
 
@@ -149,6 +157,268 @@ export default function HomePage() {
         <Row>
           <Col>
             <section>
+              <h3 className={style.categoryTitleTurnos} id={style.bold}>
+                TURNOS MEDICOS
+              </h3>
+              {loadingData ? (
+                <div className="text-center" id={style.loadingSpinner}>
+                  <div className="spinner-border text-secondary" role="status">
+                    <span className="sr-only"></span>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {hoyTurnosMedicosArray.length == 0 &&
+                    proxSemTurnosMedicosArray.length == 0 &&
+                    proxMesTurnosMedicosArray.length == 0 && (
+                      <div className={style.alertsRowTurnos}>
+                        <p>
+                          No hay fechas de turnos cercanos a la fecha actual.
+                        </p>
+                      </div>
+                    )}
+                  {hoyTurnosMedicosArray.length > 0 && (
+                    <>
+                      <h5 className={style.categoryTitleTurnos} id={style.bold}>
+                        HOY
+                      </h5>
+                      {hoyTurnosMedicosArray.map((element, index) => {
+                        return (
+                          <div className={style.alertsRowTurnos} key={index}>
+                            <p
+                              className={style.alertsColTurnosStart}
+                              id={style.bold}
+                            >
+                              {element.nombre}
+                            </p>
+                            <p className={style.alertsColTurnos}>
+                              {element.tipo_turno}
+                            </p>
+                            <p className={style.alertsColTurnos}>
+                              {element.lugar_turno}
+                            </p>
+                            <p
+                              className={style.alertsColTurnos}
+                              id={style.bold}
+                            >
+                              {element.hora_turno} hs
+                            </p>
+                            <p className={style.alertsColEnd} id={style.bold}>
+                              {element.dia_turno}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </>
+                  )}
+                  {proxSemTurnosMedicosArray.length > 0 && (
+                    <>
+                      <h5 className={style.categoryTitleTurnos} id={style.bold}>
+                        PRÓXIMOS 7 DIAS
+                      </h5>
+                      {proxSemTurnosMedicosArray.map((element, index) => {
+                        return (
+                          <div className={style.alertsRowTurnos} key={index}>
+                            <p
+                              className={style.alertsColTurnosStart}
+                              id={style.bold}
+                            >
+                              {element.nombre}
+                            </p>
+                            <p className={style.alertsColTurnos}>
+                              {element.tipo_turno}
+                            </p>
+                            <p className={style.alertsColTurnos}>
+                              {element.lugar_turno}
+                            </p>
+                            <p
+                              className={style.alertsColTurnos}
+                              id={style.bold}
+                            >
+                              {element.hora_turno} hs
+                            </p>
+                            <p className={style.alertsColEnd} id={style.bold}>
+                              {element.dia_turno}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </>
+                  )}
+                  {proxMesTurnosMedicosArray.length > 0 && (
+                    <>
+                      <h5 className={style.categoryTitleTurnos} id={style.bold}>
+                        PRÓXIMOS 30 DIAS
+                      </h5>
+                      {proxMesTurnosMedicosArray.map((element, index) => {
+                        return (
+                          <div className={style.alertsRowTurnos} key={index}>
+                            <p
+                              className={style.alertsColTurnosStart}
+                              id={style.bold}
+                            >
+                              {element.nombre}
+                            </p>
+                            <p className={style.alertsColTurnos}>
+                              {element.tipo_turno}
+                            </p>
+                            <p className={style.alertsColTurnos}>
+                              {element.lugar_turno}
+                            </p>
+                            <p
+                              className={style.alertsColTurnos}
+                              id={style.bold}
+                            >
+                              {element.hora_turno} hs
+                            </p>
+                            <p className={style.alertsColEnd} id={style.bold}>
+                              {element.dia_turno}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </>
+                  )}
+                </>
+              )}
+            </section>
+          </Col>
+        </Row>
+        <br />
+        <Row>
+          <Col>
+            <section>
+              <h3 className={style.categoryTitleTurnosJud} id={style.bold}>
+                TURNOS JUDICIALES
+              </h3>
+              {loadingData ? (
+                <div className="text-center" id={style.loadingSpinner}>
+                  <div className="spinner-border text-secondary" role="status">
+                    <span className="sr-only"></span>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {hoyTurnosJudicialesArray.length == 0 &&
+                    proxSemTurnosJudicialesArray.length == 0 &&
+                    proxMesTurnosJudicialesArray.length == 0 && (
+                      <div className={style.alertsRowTurnos}>
+                        <p>
+                          No hay fechas de turnos cercanos a la fecha actual.
+                        </p>
+                      </div>
+                    )}
+                  {hoyTurnosJudicialesArray.length > 0 && (
+                    <>
+                      <h5 className={style.categoryTitleTurnosJud} id={style.bold}>
+                        HOY
+                      </h5>
+                      {hoyTurnosJudicialesArray.map((element, index) => {
+                        return (
+                          <div className={style.alertsRowTurnosJud} key={index}>
+                            <p
+                              className={style.alertsColTurnosStart}
+                              id={style.bold}
+                            >
+                              {element.nombre}
+                            </p>
+                            <p className={style.alertsColTurnos}>
+                              {element.tipo_turno}
+                            </p>
+                            <p className={style.alertsColTurnos}>
+                              {element.lugar_turno}
+                            </p>
+                            <p
+                              className={style.alertsColTurnos}
+                              id={style.bold}
+                            >
+                              {element.hora_turno} hs
+                            </p>
+                            <p className={style.alertsColEnd} id={style.bold}>
+                              {element.dia_turno}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </>
+                  )}
+                  {proxSemTurnosJudicialesArray.length > 0 && (
+                    <>
+                      <h5 className={style.categoryTitleTurnosJud} id={style.bold}>
+                        PRÓXIMOS 7 DIAS
+                      </h5>
+                      {proxSemTurnosJudicialesArray.map((element, index) => {
+                        return (
+                          <div className={style.alertsRowTurnosJud} key={index}>
+                            <p
+                              className={style.alertsColTurnosStart}
+                              id={style.bold}
+                            >
+                              {element.nombre}
+                            </p>
+                            <p className={style.alertsColTurnos}>
+                              {element.tipo_turno}
+                            </p>
+                            <p className={style.alertsColTurnos}>
+                              {element.lugar_turno}
+                            </p>
+                            <p
+                              className={style.alertsColTurnos}
+                              id={style.bold}
+                            >
+                              {element.hora_turno} hs
+                            </p>
+                            <p className={style.alertsColEnd} id={style.bold}>
+                              {element.dia_turno}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </>
+                  )}
+                  {proxMesTurnosJudicialesArray.length > 0 && (
+                    <>
+                      <h5 className={style.categoryTitleTurnosJud} id={style.bold}>
+                        PRÓXIMOS 30 DIAS
+                      </h5>
+                      {proxMesTurnosJudicialesArray.map((element, index) => {
+                        return (
+                          <div className={style.alertsRowTurnosJud} key={index}>
+                            <p
+                              className={style.alertsColTurnosStart}
+                              id={style.bold}
+                            >
+                              {element.nombre}
+                            </p>
+                            <p className={style.alertsColTurnos}>
+                              {element.tipo_turno}
+                            </p>
+                            <p className={style.alertsColTurnos}>
+                              {element.lugar_turno}
+                            </p>
+                            <p
+                              className={style.alertsColTurnos}
+                              id={style.bold}
+                            >
+                              {element.hora_turno} hs
+                            </p>
+                            <p className={style.alertsColEnd} id={style.bold}>
+                              {element.dia_turno}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </>
+                  )}
+                </>
+              )}
+            </section>
+          </Col>
+        </Row>
+        <br />
+        <Row>
+          <Col>
+            <section>
               <h3 className={style.categoryTitleCertif} id={style.bold}>
                 VENCIMIENTO DE CERTIFICADOS
               </h3>
@@ -230,137 +500,6 @@ export default function HomePage() {
                             </p>
                             <p className={style.alertsColEnd} id={style.bold}>
                               {element.fecha_vencimiento_certificado}
-                            </p>
-                          </div>
-                        );
-                      })}
-                    </>
-                  )}
-                </>
-              )}
-            </section>
-          </Col>
-        </Row>
-        <br />
-        <Row>
-          <Col>
-            <section>
-              <h3 className={style.categoryTitleTurnos} id={style.bold}>
-                TURNOS MEDICOS Y JUDICIALES
-              </h3>
-              {loadingData ? (
-                <div className="text-center" id={style.loadingSpinner}>
-                  <div className="spinner-border text-secondary" role="status">
-                    <span className="sr-only"></span>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  {hoyTurnosArray.length == 0 &&
-                    proxSemTurnosArray.length == 0 &&
-                    proxMesTurnosArray.length == 0 && (
-                      <div className={style.alertsRowTurnos}>
-                        <p>
-                          No hay fechas de turnos cercanos a la fecha actual.
-                        </p>
-                      </div>
-                    )}
-                  {hoyTurnosArray.length > 0 && (
-                    <>
-                      <h5 className={style.categoryTitleTurnos} id={style.bold}>
-                        HOY
-                      </h5>
-                      {hoyTurnosArray.map((element, index) => {
-                        return (
-                          <div className={style.alertsRowTurnos} key={index}>
-                            <p
-                              className={style.alertsColTurnosStart}
-                              id={style.bold}
-                            >
-                              {element.nombre}
-                            </p>
-                            <p className={style.alertsColTurnos}>
-                              {element.tipo_turno}
-                            </p>
-                            <p className={style.alertsColTurnos}>
-                              {element.lugar_turno}
-                            </p>
-                            <p
-                              className={style.alertsColTurnos}
-                              id={style.bold}
-                            >
-                              {element.hora_turno} hs
-                            </p>
-                            <p className={style.alertsColEnd} id={style.bold}>
-                              {element.dia_turno}
-                            </p>
-                          </div>
-                        );
-                      })}
-                    </>
-                  )}
-                  {proxSemTurnosArray.length > 0 && (
-                    <>
-                      <h5 className={style.categoryTitleTurnos} id={style.bold}>
-                        PRÓXIMOS 7 DIAS
-                      </h5>
-                      {proxSemTurnosArray.map((element, index) => {
-                        return (
-                          <div className={style.alertsRowTurnos} key={index}>
-                            <p
-                              className={style.alertsColTurnosStart}
-                              id={style.bold}
-                            >
-                              {element.nombre}
-                            </p>
-                            <p className={style.alertsColTurnos}>
-                              {element.tipo_turno}
-                            </p>
-                            <p className={style.alertsColTurnos}>
-                              {element.lugar_turno}
-                            </p>
-                            <p
-                              className={style.alertsColTurnos}
-                              id={style.bold}
-                            >
-                              {element.hora_turno} hs
-                            </p>
-                            <p className={style.alertsColEnd} id={style.bold}>
-                              {element.dia_turno}
-                            </p>
-                          </div>
-                        );
-                      })}
-                    </>
-                  )}
-                  {proxMesTurnosArray.length > 0 && (
-                    <>
-                      <h5 className={style.categoryTitleTurnos} id={style.bold}>
-                        PRÓXIMOS 30 DIAS
-                      </h5>
-                      {proxMesTurnosArray.map((element, index) => {
-                        return (
-                          <div className={style.alertsRowTurnos} key={index}>
-                            <p
-                              className={style.alertsColTurnosStart}
-                              id={style.bold}
-                            >
-                              {element.nombre}
-                            </p>
-                            <p className={style.alertsColTurnos}>
-                              {element.tipo_turno}
-                            </p>
-                            <p className={style.alertsColTurnos}>
-                              {element.lugar_turno}
-                            </p>
-                            <p
-                              className={style.alertsColTurnos}
-                              id={style.bold}
-                            >
-                              {element.hora_turno} hs
-                            </p>
-                            <p className={style.alertsColEnd} id={style.bold}>
-                              {element.dia_turno}
                             </p>
                           </div>
                         );
