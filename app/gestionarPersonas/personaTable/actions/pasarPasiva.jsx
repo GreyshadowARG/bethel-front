@@ -37,6 +37,7 @@ const PasarPasiva = ({ props }) => {
       await axios.post(
         PASARPASIVA_URL,
         JSON.stringify({
+          id: props._id,
           nombre: props.nombre + " " + props.apellido,
           motivo_pasividad:
             motivoPasividad == "Otro" ? otroMotivoPasividad : motivoPasividad,

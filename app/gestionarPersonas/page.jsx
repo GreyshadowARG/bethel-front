@@ -13,10 +13,13 @@ import axios from "../../config/axios";
 import { useState, useEffect } from "react";
 
 import GestionPersona from "./personaTable/personaTable";
+import GestionPasiva from "./personaTable/pasivaTable";
 
 // URLs
 const GETALLPERSONAS = "api/persona/getAllPersonas";
 const GETPERSONABYID = "api/persona/getPersonaById/";
+const GETPOBLACIONPASIVA = "api/pasividad/getPoblacionPasiva";
+const GETPASIVABYID = "api/pasividad/getPasivaById/";
 
 export default function BuscarPersona() {
   const [loadData, setLoadData] = useState(true);
@@ -34,19 +37,24 @@ export default function BuscarPersona() {
   const [noRecibePension, setNoRecibePension] = useState([]);
   const [pensionEnTramite, setPensionEnTramite] = useState([]);
   const [personaById, setPersonaById] = useState([]);
+  const [pasivaById, setPasivaById] = useState([]);
   const [filterType, setFilterType] = useState("---");
   const [singlePersonaMode, setSinglePersonaMode] = useState(false);
+  const [singlePasivaMode, setSinglePasivaMode] = useState(false);
   const [casa, setCasa] = useState("Casa 2");
   const [edad, setEdad] = useState("Menores de 18");
   const [discapacidad, setDiscapacidad] = useState("No");
   const [curatela, setCuratela] = useState("No");
   const [pension, setPension] = useState("No");
+  const [poblacionPasiva, setPoblacionPasiva] = useState([]);
 
   useEffect(() => {
     const getAllPersonas = async () => {
       try {
         const fetchPersonas = await axios.get(GETALLPERSONAS);
+        const fetchPasiva = await axios.get(GETPOBLACIONPASIVA);
         setPersonas(fetchPersonas.data);
+        setPoblacionPasiva(fetchPasiva.data);
         getEdades();
         getDiscapacidad();
         getCuratela();
@@ -74,6 +82,17 @@ export default function BuscarPersona() {
     try {
       const fetchPersonaById = await axios.get(GETPERSONABYID + id);
       setPersonaById(fetchPersonaById.data);
+      setSinglePersonaMode(true);
+      setSinglePasivaMode(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleClickPasiva = async (id) => {
+    try {
+      const fetchPersonaById = await axios.get(GETPASIVABYID + id);
+      setPasivaById(fetchPersonaById.data);
+      setSinglePasivaMode(true);
       setSinglePersonaMode(true);
     } catch (err) {
       console.log(err);
@@ -154,7 +173,9 @@ export default function BuscarPersona() {
 
   return (
     <section>
-      <h2 className={style.h2} id={style.bold}>GESTIÓN DE PERSONAS</h2>
+      <h2 className={style.h2} id={style.bold}>
+        GESTIÓN DE PERSONAS
+      </h2>
       <hr />
       {singlePersonaMode === true ? (
         <button
@@ -195,6 +216,7 @@ export default function BuscarPersona() {
                 <option value="Discapacidad">¿Tiene discapacidad?</option>
                 <option value="Curatela">¿Tiene curatela?</option>
                 <option value="Pensión">¿Tiene pensión?</option>
+                <option value="Pasiva">Población pasiva</option>
               </select>
               {filterType == "Casa" && (
                 <select
@@ -274,29 +296,47 @@ export default function BuscarPersona() {
       <hr />
       {singlePersonaMode === false && (
         <>
-          <div className={style.trTitle}>
-            <p className={style.th} id={style.bold}>
-              Nombre
-            </p>
-            <p className={style.th} id={style.bold}>
-              Apellido
-            </p>
-            {discapacidad != "Si" ? (
+          {filterType !== "Pasiva" ? (
+            <div className={style.trTitle}>
               <p className={style.th} id={style.bold}>
-                Edad
+                Nombre
               </p>
-            ) : (
               <p className={style.th} id={style.bold}>
-                Discapacidad
+                Apellido
               </p>
-            )}
-            <p className={style.th} id={style.bold}>
-              Casa
-            </p>
-            <p className={style.th} id={style.bold}>
-              Accion
-            </p>
-          </div>
+              {discapacidad != "Si" ? (
+                <p className={style.th} id={style.bold}>
+                  Edad
+                </p>
+              ) : (
+                <p className={style.th} id={style.bold}>
+                  Discapacidad
+                </p>
+              )}
+              <p className={style.th} id={style.bold}>
+                Casa
+              </p>
+              <p className={style.th} id={style.bold}>
+                Accion
+              </p>
+            </div>
+          ) : (
+            <div className={style.trTitle}>
+              <p className={style.th} id={style.bold}>
+                Nombre
+              </p>
+              <p className={style.th} id={style.bold}>
+                Motivo
+              </p>
+              <p className={style.th} id={style.bold}>
+                Fecha
+              </p>
+              <p className={style.th} id={style.bold}>
+                Accion
+              </p>
+            </div>
+          )}
+
           {loadData ? (
             <>
               <div className="text-center" id={style.loadingSpinner}>
@@ -352,215 +392,267 @@ export default function BuscarPersona() {
                 {filterType == "Edad" && (
                   <>
                     {edad == "Mayores de 18" &&
-                      mayores18.filter((persona) => persona.apellido.includes(finalQuery))
-                      .map((persona) => (
-                        <div className={style.trBody} key={persona._id}>
-                          <p className={style.td}>{persona.nombre}</p>
-                          <p className={style.td}>{persona.apellido}</p>
-                          <p className={style.td} id={style.bold}>
-                            {persona.edad}
-                          </p>
-                          <p className={style.td}>{persona.casa}</p>
-                          <div className={style.tdButton}>
-                            <button
-                              className={style.buttonGestionar}
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
+                      mayores18
+                        .filter((persona) =>
+                          persona.apellido.includes(finalQuery)
+                        )
+                        .map((persona) => (
+                          <div className={style.trBody} key={persona._id}>
+                            <p className={style.td}>{persona.nombre}</p>
+                            <p className={style.td}>{persona.apellido}</p>
+                            <p className={style.td} id={style.bold}>
+                              {persona.edad}
+                            </p>
+                            <p className={style.td}>{persona.casa}</p>
+                            <div className={style.tdButton}>
+                              <button
+                                className={style.buttonGestionar}
+                                onClick={() => handleClick(persona._id)}
+                              >
+                                Gestionar
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                     {edad == "Menores de 18" &&
-                      menores18.filter((persona) => persona.apellido.includes(finalQuery))
-                      .map((persona) => (
-                        <div className={style.trBody} key={persona._id}>
-                          <p className={style.td}>{persona.nombre}</p>
-                          <p className={style.td}>{persona.apellido}</p>
-                          <p className={style.td} id={style.bold}>
-                            {persona.edad}
-                          </p>
-                          <p className={style.td}>{persona.casa}</p>
-                          <div className={style.tdButton}>
-                            <button
-                              className={style.buttonGestionar}
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
+                      menores18
+                        .filter((persona) =>
+                          persona.apellido.includes(finalQuery)
+                        )
+                        .map((persona) => (
+                          <div className={style.trBody} key={persona._id}>
+                            <p className={style.td}>{persona.nombre}</p>
+                            <p className={style.td}>{persona.apellido}</p>
+                            <p className={style.td} id={style.bold}>
+                              {persona.edad}
+                            </p>
+                            <p className={style.td}>{persona.casa}</p>
+                            <div className={style.tdButton}>
+                              <button
+                                className={style.buttonGestionar}
+                                onClick={() => handleClick(persona._id)}
+                              >
+                                Gestionar
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                   </>
                 )}
                 {filterType == "Discapacidad" && (
                   <>
                     {discapacidad == "Si" &&
-                      tieneDiscapacidad.filter((persona) => persona.apellido.includes(finalQuery))
-                      .map((persona) => (
-                        <div className={style.trBody} key={persona._id}>
-                          <p className={style.td}>{persona.nombre}</p>
-                          <p className={style.td}>{persona.apellido}</p>
-                          <p className={style.td} id={style.bold}>
-                            {persona.tipo_discapacidad}
-                          </p>
-                          <p className={style.td}>{persona.casa}</p>
-                          <div className={style.tdButton}>
-                            <button
-                              className={style.buttonGestionar}
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
+                      tieneDiscapacidad
+                        .filter((persona) =>
+                          persona.apellido.includes(finalQuery)
+                        )
+                        .map((persona) => (
+                          <div className={style.trBody} key={persona._id}>
+                            <p className={style.td}>{persona.nombre}</p>
+                            <p className={style.td}>{persona.apellido}</p>
+                            <p className={style.td} id={style.bold}>
+                              {persona.tipo_discapacidad}
+                            </p>
+                            <p className={style.td}>{persona.casa}</p>
+                            <div className={style.tdButton}>
+                              <button
+                                className={style.buttonGestionar}
+                                onClick={() => handleClick(persona._id)}
+                              >
+                                Gestionar
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                     {discapacidad == "No" &&
-                      noTieneDiscapacidad.filter((persona) => persona.apellido.includes(finalQuery))
-                      .map((persona) => (
-                        <div className={style.trBody} key={persona._id}>
-                          <p className={style.td}>{persona.nombre}</p>
-                          <p className={style.td}>{persona.apellido}</p>
-                          <p className={style.td}>{persona.edad}</p>
-                          <p className={style.td}>{persona.casa}</p>
-                          <div className={style.tdButton}>
-                            <button
-                              className={style.buttonGestionar}
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
+                      noTieneDiscapacidad
+                        .filter((persona) =>
+                          persona.apellido.includes(finalQuery)
+                        )
+                        .map((persona) => (
+                          <div className={style.trBody} key={persona._id}>
+                            <p className={style.td}>{persona.nombre}</p>
+                            <p className={style.td}>{persona.apellido}</p>
+                            <p className={style.td}>{persona.edad}</p>
+                            <p className={style.td}>{persona.casa}</p>
+                            <div className={style.tdButton}>
+                              <button
+                                className={style.buttonGestionar}
+                                onClick={() => handleClick(persona._id)}
+                              >
+                                Gestionar
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                   </>
                 )}
                 {filterType == "Curatela" && (
                   <>
                     {curatela == "Si" &&
-                      tieneCuratela.filter((persona) => persona.apellido.includes(finalQuery))
-                      .map((persona) => (
-                        <div className={style.trBody} key={persona._id}>
-                          <p className={style.td}>{persona.nombre}</p>
-                          <p className={style.td}>{persona.apellido}</p>
-                          <p className={style.td}>{persona.edad}</p>
-                          <p className={style.td}>{persona.casa}</p>
-                          <div className={style.tdButton}>
-                            <button
-                              className={style.buttonGestionar}
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
+                      tieneCuratela
+                        .filter((persona) =>
+                          persona.apellido.includes(finalQuery)
+                        )
+                        .map((persona) => (
+                          <div className={style.trBody} key={persona._id}>
+                            <p className={style.td}>{persona.nombre}</p>
+                            <p className={style.td}>{persona.apellido}</p>
+                            <p className={style.td}>{persona.edad}</p>
+                            <p className={style.td}>{persona.casa}</p>
+                            <div className={style.tdButton}>
+                              <button
+                                className={style.buttonGestionar}
+                                onClick={() => handleClick(persona._id)}
+                              >
+                                Gestionar
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                     {curatela == "No" &&
-                      noTieneCuratela.filter((persona) => persona.apellido.includes(finalQuery))
-                      .map((persona) => (
-                        <div className={style.trBody} key={persona._id}>
-                          <p className={style.td}>{persona.nombre}</p>
-                          <p className={style.td}>{persona.apellido}</p>
-                          <p className={style.td}>{persona.edad}</p>
-                          <p className={style.td}>{persona.casa}</p>
-                          <div className={style.tdButton}>
-                            <button
-                              className={style.buttonGestionar}
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
+                      noTieneCuratela
+                        .filter((persona) =>
+                          persona.apellido.includes(finalQuery)
+                        )
+                        .map((persona) => (
+                          <div className={style.trBody} key={persona._id}>
+                            <p className={style.td}>{persona.nombre}</p>
+                            <p className={style.td}>{persona.apellido}</p>
+                            <p className={style.td}>{persona.edad}</p>
+                            <p className={style.td}>{persona.casa}</p>
+                            <div className={style.tdButton}>
+                              <button
+                                className={style.buttonGestionar}
+                                onClick={() => handleClick(persona._id)}
+                              >
+                                Gestionar
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                     {curatela == "En trámite" &&
-                      curatelaEnTramite.filter((persona) => persona.apellido.includes(finalQuery))
-                      .map((persona) => (
-                        <div className={style.trBody} key={persona._id}>
-                          <p className={style.td}>{persona.nombre}</p>
-                          <p className={style.td}>{persona.apellido}</p>
-                          <p className={style.td}>{persona.edad}</p>
-                          <p className={style.td}>{persona.casa}</p>
-                          <div className={style.tdButton}>
-                            <button
-                              className={style.buttonGestionar}
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
+                      curatelaEnTramite
+                        .filter((persona) =>
+                          persona.apellido.includes(finalQuery)
+                        )
+                        .map((persona) => (
+                          <div className={style.trBody} key={persona._id}>
+                            <p className={style.td}>{persona.nombre}</p>
+                            <p className={style.td}>{persona.apellido}</p>
+                            <p className={style.td}>{persona.edad}</p>
+                            <p className={style.td}>{persona.casa}</p>
+                            <div className={style.tdButton}>
+                              <button
+                                className={style.buttonGestionar}
+                                onClick={() => handleClick(persona._id)}
+                              >
+                                Gestionar
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                   </>
                 )}
                 {filterType == "Pensión" && (
                   <>
                     {pension == "Si" &&
-                      recibePension.filter((persona) => persona.apellido.includes(finalQuery))
-                      .map((persona) => (
-                        <div className={style.trBody} key={persona._id}>
-                          <p className={style.td}>{persona.nombre}</p>
-                          <p className={style.td}>{persona.apellido}</p>
-                          <p className={style.td}>{persona.edad}</p>
-                          <p className={style.td}>{persona.casa}</p>
-                          <div className={style.tdButton}>
-                            <button
-                              className={style.buttonGestionar}
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
+                      recibePension
+                        .filter((persona) =>
+                          persona.apellido.includes(finalQuery)
+                        )
+                        .map((persona) => (
+                          <div className={style.trBody} key={persona._id}>
+                            <p className={style.td}>{persona.nombre}</p>
+                            <p className={style.td}>{persona.apellido}</p>
+                            <p className={style.td}>{persona.edad}</p>
+                            <p className={style.td}>{persona.casa}</p>
+                            <div className={style.tdButton}>
+                              <button
+                                className={style.buttonGestionar}
+                                onClick={() => handleClick(persona._id)}
+                              >
+                                Gestionar
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                     {pension == "No" &&
-                      noRecibePension.filter((persona) => persona.apellido.includes(finalQuery))
-                      .map((persona) => (
-                        <div className={style.trBody} key={persona._id}>
-                          <p className={style.td}>{persona.nombre}</p>
-                          <p className={style.td}>{persona.apellido}</p>
-                          <p className={style.td}>{persona.edad}</p>
-                          <p className={style.td}>{persona.casa}</p>
-                          <div className={style.tdButton}>
-                            <button
-                              className={style.buttonGestionar}
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
+                      noRecibePension
+                        .filter((persona) =>
+                          persona.apellido.includes(finalQuery)
+                        )
+                        .map((persona) => (
+                          <div className={style.trBody} key={persona._id}>
+                            <p className={style.td}>{persona.nombre}</p>
+                            <p className={style.td}>{persona.apellido}</p>
+                            <p className={style.td}>{persona.edad}</p>
+                            <p className={style.td}>{persona.casa}</p>
+                            <div className={style.tdButton}>
+                              <button
+                                className={style.buttonGestionar}
+                                onClick={() => handleClick(persona._id)}
+                              >
+                                Gestionar
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                     {pension == "En trámite" &&
-                      pensionEnTramite.filter((persona) => persona.apellido.includes(finalQuery))
-                      .map((persona) => (
-                        <div className={style.trBody} key={persona._id}>
-                          <p className={style.td}>{persona.nombre}</p>
-                          <p className={style.td}>{persona.apellido}</p>
-                          <p className={style.td}>{persona.edad}</p>
-                          <p className={style.td}>{persona.casa}</p>
-                          <div className={style.tdButton}>
-                            <button
-                              className={style.buttonGestionar}
-                              onClick={() => handleClick(persona._id)}
-                            >
-                              Gestionar
-                            </button>
+                      pensionEnTramite
+                        .filter((persona) =>
+                          persona.apellido.includes(finalQuery)
+                        )
+                        .map((persona) => (
+                          <div className={style.trBody} key={persona._id}>
+                            <p className={style.td}>{persona.nombre}</p>
+                            <p className={style.td}>{persona.apellido}</p>
+                            <p className={style.td}>{persona.edad}</p>
+                            <p className={style.td}>{persona.casa}</p>
+                            <div className={style.tdButton}>
+                              <button
+                                className={style.buttonGestionar}
+                                onClick={() => handleClick(persona._id)}
+                              >
+                                Gestionar
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                   </>
                 )}
+                {filterType == "Pasiva" &&
+                  poblacionPasiva.map((persona) => (
+                    <div className={style.trBody} key={persona._id}>
+                      <p className={style.td}>{persona.nombre}</p>
+                      <p className={style.td}>{persona.motivo_pasividad}</p>
+                      <p className={style.td}>{persona.fecha}</p>
+                      <div className={style.tdButton}>
+                        <button
+                          className={style.buttonGestionar}
+                          onClick={() => handleClickPasiva(persona._id)}
+                        >
+                          Ver datos
+                        </button>
+                      </div>
+                    </div>
+                  ))}
               </div>
             </>
           )}
         </>
       )}
-      {singlePersonaMode === true && (
+      {(singlePersonaMode === true && singlePasivaMode === false) && (
         <>
           <GestionPersona props={personaById._id} />
         </>
       )}
+      {(singlePasivaMode === true && singlePersonaMode === true) &&(
+        <>
+          <GestionPasiva props={pasivaById._id} />
+        </>
+      )}
+
     </section>
   );
 }
