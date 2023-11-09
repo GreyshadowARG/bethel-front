@@ -212,25 +212,21 @@ export default function CargarPersonas() {
   };
 
   const handleDocIngreso = () => {
-    if (documentacionIngreso !== "" && documentacionIngresoExtra === "") {
-      return documentacionIngreso;
+    if (documentacionIngreso !== "" && documentacionIngresoExtra === "Otros") {
+      return `${documentacionIngreso}, ${otraDocumentacionIngreso}`;
+    } else if (
+      documentacionIngreso !== "" &&
+      documentacionIngresoExtra === ""
+    ) {
+      return `${documentacionIngreso}`;
     } else if (
       documentacionIngreso !== "" &&
       documentacionIngresoExtra !== ""
     ) {
       return `${documentacionIngreso}, ${documentacionIngresoExtra}`;
-    } else if (
-      documentacionIngreso === "Otros" &&
-      documentacionIngresoExtra === ""
-    ) {
-      return otraDocumentacionIngreso;
-    } else if (
-      documentacionIngreso !== "" &&
-      documentacionIngresoExtra === "Otros"
-    ) {
-      return `${documentacionIngreso}, ${otraDocumentacionIngreso}`;
     }
   };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -251,7 +247,7 @@ export default function CargarPersonas() {
           numero_afiliado: numeroAfiliado,
           codigo_afiliado: codigoAfiliado,
           fecha_ingreso: fechaIngreso,
-          documentacion_ingreso: handleDocIngreso(),
+          documentacion_ingreso: documentacionIngreso === "Otros" ? otraDocumentacionIngreso : handleDocIngreso(),
           area_pide_ingreso:
             areaPideIngreso === "Otro" ? otraAreaIngreso : areaPideIngreso,
           detalle_area:
