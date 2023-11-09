@@ -35,6 +35,8 @@ export default function CargarPersonas() {
   // datos ingreso
   const [fechaIngreso, setFechaIngreso] = useState("");
   const [documentacionIngreso, setDocumentacionIngreso] = useState("");
+  const [documentacionIngresoExtra, setDocumentacionIngresoExtra] =
+    useState("");
   const [otraDocumentacionIngreso, setOtraDocumentacionIngreso] = useState("");
   const [areaPideIngreso, setAreaPideIngreso] = useState("");
 
@@ -209,6 +211,26 @@ export default function CargarPersonas() {
     setFechaNacimiento();
   };
 
+  const handleDocIngreso = () => {
+    if (documentacionIngreso !== "" && documentacionIngresoExtra === "") {
+      return documentacionIngreso;
+    } else if (
+      documentacionIngreso !== "" &&
+      documentacionIngresoExtra !== ""
+    ) {
+      return `${documentacionIngreso}, ${documentacionIngresoExtra}`;
+    } else if (
+      documentacionIngreso === "Otros" &&
+      documentacionIngresoExtra === ""
+    ) {
+      return otraDocumentacionIngreso;
+    } else if (
+      documentacionIngreso !== "" &&
+      documentacionIngresoExtra === "Otros"
+    ) {
+      return `${documentacionIngreso}, ${otraDocumentacionIngreso}`;
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -229,18 +251,15 @@ export default function CargarPersonas() {
           numero_afiliado: numeroAfiliado,
           codigo_afiliado: codigoAfiliado,
           fecha_ingreso: fechaIngreso,
-          documentacion_ingreso:
-            documentacionIngreso == "Otro"
-              ? otraDocumentacionIngreso
-              : documentacionIngreso,
+          documentacion_ingreso: handleDocIngreso(),
           area_pide_ingreso:
-            areaPideIngreso == "Otro" ? otraAreaIngreso : areaPideIngreso,
+            areaPideIngreso === "Otro" ? otraAreaIngreso : areaPideIngreso,
           detalle_area:
-            areaPideIngreso != "Otro" || areaPideIngreso != "SENAF"
+            areaPideIngreso !== "Otro" || areaPideIngreso != "SENAF"
               ? areaPideIngresoDetalles
               : "",
           condicion:
-            condicionSenaf == "Otro" ? setCondicionSenafOtro : condicionSenaf,
+            condicionSenaf === "Otro" ? setCondicionSenafOtro : condicionSenaf,
           motivo_ingreso: motivoIngreso,
           concurre_institucion_educativa: concurreInstitucionEducativa,
           maestra_integradora: maestraIntegradora,
@@ -267,7 +286,7 @@ export default function CargarPersonas() {
           dia_atencion_at: diaAtencionAcomTer,
           horario_atencion_at: horarioAtencionAcomTer,
           recibe_tratamiento:
-            tratamientoRecibe == "Otro"
+            tratamientoRecibe === "Otro"
               ? otroTratamientoRecibe
               : tratamientoRecibe,
           fecha_inicio: fechaInicio,
@@ -294,7 +313,8 @@ export default function CargarPersonas() {
           tel_referente: telReferente,
           situacion_familiar_en_institucion: situacionFamiliar,
           recibe_visitas: recibeVisitas,
-          tipo_vinculo: tipoVinculo == "Otro" ? tipoVinculo : tipoVinculoSelect,
+          tipo_vinculo:
+            tipoVinculo === "Otro" ? tipoVinculo : tipoVinculoSelect,
           nombre_viculo: nombreVinculoVisita,
           frecuencia_visita: frecuenciaVisita,
           proceso_revinculacion: procesoRevinculacion,
@@ -325,7 +345,9 @@ export default function CargarPersonas() {
         </div>
       ) : (
         <>
-          <h2 className={style.h2} id={style.bold}>NUEVO INRESO</h2>
+          <h2 className={style.h2} id={style.bold}>
+            NUEVO INRESO
+          </h2>
           <hr />
           <form onSubmit={handleSubmit}>
             <Container>
@@ -439,7 +461,7 @@ export default function CargarPersonas() {
                       let age_dt = new Date(month_diff);
                       let year = age_dt.getUTCFullYear();
                       let age = Math.abs(year - 1970);
-                      setEdad(age)
+                      setEdad(age);
                       setFechaNacimiento(e.target.value);
                     }}
                   />
@@ -596,7 +618,27 @@ export default function CargarPersonas() {
                     </option>
                     <option value="Otros">Otros</option>
                   </select>
-                  {documentacionIngreso == "Otros" && (
+                  {documentacionIngreso !== "" && (
+                    <select
+                      value={documentacionIngresoExtra}
+                      onChange={(e) => {
+                        setDocumentacionIngresoExtra(e.target.value);
+                      }}
+                    >
+                      <option value="">---</option>
+                      <option value="DNI">DNI</option>
+                      <option value="Informe médico">Informe médico</option>
+                      <option value="Carnet vacunación">
+                        Carnet vacunación
+                      </option>
+                      <option value="Partida nacimiento">
+                        Partida nacimiento
+                      </option>
+                      <option value="Otros">Otros</option>
+                    </select>
+                  )}
+                  {(documentacionIngreso == "Otros" ||
+                    documentacionIngresoExtra == "Otros") && (
                     <>
                       <br />
                       <input

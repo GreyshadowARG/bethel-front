@@ -18,6 +18,8 @@ const Ingreso = ({ persona, getLoadData }) => {
   const [condicion, setCondicion] = useState("");
   const [motivoIngreso, setMotivoIngreso] = useState("");
   const [documentacionIngreso, setDocumentacionIngreso] = useState("");
+  const [documentacionIngresoExtra, setDocumentacionIngresoExtra] =
+    useState("");
   const [otraDocumentacionIngreso, setOtraDocumentacionIngreso] = useState("");
 
   // URLs
@@ -45,16 +47,29 @@ const Ingreso = ({ persona, getLoadData }) => {
     setDocumentacionIngreso(persona.documentacion_ingreso);
   };
 
+  const handleDocIngreso = () => {
+    if (documentacionIngreso !== "" && documentacionIngresoExtra === "Otros") {
+      return `${documentacionIngreso}, ${otraDocumentacionIngreso}`;
+    } else if (
+      documentacionIngreso !== "" &&
+      documentacionIngresoExtra === ""
+    ) {
+      return `${documentacionIngreso}`;
+    } else if (
+      documentacionIngreso !== "" &&
+      documentacionIngresoExtra !== ""
+    ) {
+      return `${documentacionIngreso}, ${documentacionIngresoExtra}`;
+    }
+  };
+
   const editIngreso = async (req, res, next) => {
     try {
       await axios.post(
         EDITINGRESO_URL,
         JSON.stringify({
           fecha_ingreso: fechaIngreso,
-          documentacion_ingreso:
-            documentacionIngreso == "Otro"
-              ? otraDocumentacionIngreso
-              : documentacionIngreso,
+          documentacion_ingreso: documentacionIngreso === "Otros" ? otraDocumentacionIngreso : handleDocIngreso(),
           area_pide_ingreso:
             areaPideIngreso == "Otro" ? otraAreaIngreso : areaPideIngreso,
           detalle_area: detalleArea,
@@ -206,7 +221,7 @@ const Ingreso = ({ persona, getLoadData }) => {
         )}
         {edit == "EditarIngreso" && (
           <>
-          <br/>
+            <br />
             <Row>
               <Col>
                 <label id={style.bold}>Condición</label>
@@ -260,7 +275,7 @@ const Ingreso = ({ persona, getLoadData }) => {
         )}
         {edit == "EditarIngreso" && (
           <>
-          <br/>
+            <br />
             <Row>
               <Col>
                 <label id={style.bold}>Documentacion de ingreso:</label>
@@ -278,7 +293,25 @@ const Ingreso = ({ persona, getLoadData }) => {
                   <option value="Partida nacimiento">Partida nacimiento</option>
                   <option value="Otros">Otros</option>
                 </select>
-                {documentacionIngreso == "Otros" && (
+                {documentacionIngreso !== "" && (
+                  <select
+                    value={documentacionIngresoExtra}
+                    onChange={(e) => {
+                      setDocumentacionIngresoExtra(e.target.value);
+                    }}
+                  >
+                    <option value="">---</option>
+                    <option value="DNI">DNI</option>
+                    <option value="Informe médico">Informe médico</option>
+                    <option value="Carnet vacunación">Carnet vacunación</option>
+                    <option value="Partida nacimiento">
+                      Partida nacimiento
+                    </option>
+                    <option value="Otros">Otros</option>
+                  </select>
+                )}
+                {(documentacionIngreso == "Otros" ||
+                  documentacionIngresoExtra == "Otros") && (
                   <>
                     <br />
                     <input
