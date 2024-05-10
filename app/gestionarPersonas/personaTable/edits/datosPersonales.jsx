@@ -108,7 +108,7 @@ const DatosPersonales = ({ persona, getLoadData }) => {
         {edit == "EditarDatosPersonales" ? (
           <>
             <Row>
-              <Col id={style.bold}>Nombre</Col>
+              <Col id={style.bold}>Nombresss</Col>
               <Col id={style.bold}>Apellido</Col>
               <Col></Col>
               <Col></Col>

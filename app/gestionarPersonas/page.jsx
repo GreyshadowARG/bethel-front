@@ -5,10 +5,6 @@ import style from "./gestionarPersona.module.css";
 // bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
 import axios from "../../config/axios";
 import { useState, useEffect } from "react";
 

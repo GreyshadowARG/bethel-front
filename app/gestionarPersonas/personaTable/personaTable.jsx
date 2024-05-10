@@ -49,10 +49,12 @@ const GestionPersona = ({ props }) => {
       setDatosPadre(fetchPersona.data.datos_padre_biologico);
       setDatosReferente(fetchPersona.data.datos_referente_significativo);
     };
+    
+  
     setLoadData(false);
-
     getPersona();
   }, [loadData]);
+
 
   return (
     <>
